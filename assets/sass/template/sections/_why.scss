@@ -1,0 +1,82 @@
+/* appointment-area start -----------------------*/
+.appointment-area {
+    position: relative;
+    padding: 0 120px;
+    border-radius: 40px;
+    z-index: 2;
+
+    @include ml {
+        padding: 0 80px;
+    }
+
+    @include xl {
+        padding: 0 40px;
+    }
+
+    @include sm {
+        padding: 0 20px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 517px;
+        background-image: url("../img/bg/appointment_bg_1.jpg");
+        border-radius: inherit;
+        z-index: -1;
+    }
+}
+
+/* video-box1 start ------------------*/
+
+.video-box1 {
+    position: relative;
+    z-index: 2;
+    padding: 215px 0;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    clip-path: polygon(0 0, 100% 0, 100% 89%, 0% 100%);
+
+    &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(1, 15, 28, 0.6), rgba(1, 15, 28, 0.6));
+        z-index: -1;
+    }
+
+    .box-title {
+        font-weight: 600;
+        font-size: 200px;
+        line-height: 200px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        text-align: center;
+        margin-bottom: 0;
+
+        @include xl {
+            font-size: 150px;
+            line-height: 150px;
+        }
+
+        @include xs {
+            font-size: 70px; 
+            line-height: 80px; 
+        }
+        @include vxs {
+            font-size: 60px; 
+            line-height: 70px;  
+        }
+
+    }
+
+    .video-shape {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+       
+    }
+}

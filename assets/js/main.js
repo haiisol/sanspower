@@ -1,1 +1,1186 @@
-!function(e){"use strict";function t(t){e(t).length>0&&e(t).each((function(){var t=e(this).find("a");e(this).find(t).each((function(){e(this).on("click",(function(){var t=e(this.getAttribute("href"));t.length&&(event.preventDefault(),e("html, body").stop().animate({scrollTop:t.offset().top-10},1e3))}))}))}))}if(e(window).on("load",(function(){e(".preloader").fadeOut()})),e(".preloader").length>0&&e(".preloaderCls").each((function(){e(this).on("click",(function(t){t.preventDefault(),e(".preloader").css("display","none")}))})),e(".nice-select").length&&e(".nice-select").niceSelect(),e.fn.thmobilemenu=function(t){var a=e.extend({menuToggleBtn:".th-menu-toggle",bodyToggleClass:"th-body-visible",subMenuClass:"th-submenu",subMenuParent:"th-item-has-children",subMenuParentToggle:"th-active",meanExpandClass:"th-mean-expand",appendElement:'<span class="th-mean-expand"></span>',subMenuToggleClass:"th-open",toggleSpeed:400},t);return this.each((function(){var t=e(this);function n(){t.toggleClass(a.bodyToggleClass);var n="."+a.subMenuClass;e(n).each((function(){e(this).hasClass(a.subMenuToggleClass)&&(e(this).removeClass(a.subMenuToggleClass),e(this).css("display","none"),e(this).parent().removeClass(a.subMenuParentToggle))}))}t.find("li").each((function(){var t=e(this).find("ul");t.addClass(a.subMenuClass),t.css("display","none"),t.parent().addClass(a.subMenuParent),t.prev("a").append(a.appendElement),t.next("a").append(a.appendElement)}));var i="."+a.meanExpandClass;e(i).each((function(){e(this).on("click",(function(t){var n;t.preventDefault(),n=e(this).parent(),e(n).next("ul").length>0?(e(n).parent().toggleClass(a.subMenuParentToggle),e(n).next("ul").slideToggle(a.toggleSpeed),e(n).next("ul").toggleClass(a.subMenuToggleClass)):e(n).prev("ul").length>0&&(e(n).parent().toggleClass(a.subMenuParentToggle),e(n).prev("ul").slideToggle(a.toggleSpeed),e(n).prev("ul").toggleClass(a.subMenuToggleClass))}))})),e(a.menuToggleBtn).each((function(){e(this).on("click",(function(){n()}))})),t.on("click",(function(e){e.stopPropagation(),n()})),t.find("div").on("click",(function(e){e.stopPropagation()}))}))},e(".th-menu-wrapper").thmobilemenu(),e(window).scroll((function(){e(this).scrollTop()>500?e(".sticky-wrapper").addClass("sticky"):e(".sticky-wrapper").removeClass("sticky")})),t(".onepage-nav"),t(".scroll-down"),e(".scroll-top")){var a=document.querySelector(".scroll-top"),n=document.querySelector(".scroll-top path"),i=n.getTotalLength();n.style.transition=n.style.WebkitTransition="none",n.style.strokeDasharray=i+" "+i,n.style.strokeDashoffset=i,n.getBoundingClientRect(),n.style.transition=n.style.WebkitTransition="stroke-dashoffset 10ms linear";var s=function(){var t=e(window).scrollTop(),a=e(document).height()-e(window).height(),s=i-t*i/a;n.style.strokeDashoffset=s};s(),e(window).scroll(s);jQuery(window).on("scroll",(function(){jQuery(this).scrollTop()>50?jQuery(a).addClass("show"):jQuery(a).removeClass("show")})),jQuery(a).on("click",(function(e){return e.preventDefault(),jQuery("html, body").animate({scrollTop:0},750),!1}))}e("[data-bg-src]").length>0&&e("[data-bg-src]").each((function(){var t=e(this).attr("data-bg-src");e(this).css("background-image","url("+t+")"),e(this).removeAttr("data-bg-src").addClass("background-image")})),e("[data-bg-color]").length>0&&e("[data-bg-color]").each((function(){var t=e(this).attr("data-bg-color");e(this).css("background-color",t),e(this).removeAttr("data-bg-color")})),e("[data-border]").each((function(){var t=e(this).data("border");e(this).css("--th-border-color",t)})),e("[data-mask-src]").length>0&&e("[data-mask-src]").each((function(){var t=e(this).attr("data-mask-src");e(this).css({"mask-image":"url("+t+")","-webkit-mask-image":"url("+t+")"}),e(this).addClass("bg-mask"),e(this).removeAttr("data-mask-src")})),e(".th-slider").each((function(){var t=e(this),a=e(this).data("slider-options"),n=t.find(".slider-prev"),i=t.find(".slider-next"),s=t.find(".slider-pagination"),o=a.autoplay,r={slidesPerView:1,spaceBetween:a.spaceBetween?a.spaceBetween:24,loop:0!=a.loop,speed:a.speed?a.speed:1e3,autoplay:o||{delay:6e3,disableOnInteraction:!1},navigation:{nextEl:i.get(0),prevEl:n.get(0)},pagination:{el:s.get(0),clickable:!0,renderBullet:function(e,t){return'<span class="'+t+'" aria-label="Go to Slide '+(e+1)+'"></span>'}}},c=JSON.parse(t.attr("data-slider-options"));c=e.extend({},r,c);new Swiper(t.get(0),c);e(".slider-area").length>0&&e(".slider-area").closest(".container").parent().addClass("arrow-wrap")})),e("[data-ani]").each((function(){var t=e(this).data("ani");e(this).addClass(t)})),e("[data-ani-delay]").each((function(){var t=e(this).data("ani-delay");e(this).css("animation-delay",t)})),e("[data-slider-prev], [data-slider-next]").on("click",(function(){var t=e(this).data("slider-prev")||e(this).data("slider-next"),a=e(t);if(a.length){var n=a[0].swiper;n&&(e(this).data("slider-prev")?n.slidePrev():n.slideNext())}})),e.fn.activateSliderThumbs=function(t){var a=e.extend({sliderTab:!1,tabButton:".tab-btn"},t);return this.each((function(){var t=e(this),n=t.find(a.tabButton),i=e('<span class="indicator"></span>').appendTo(t),s=t.data("slider-tab"),o=e(s)[0].swiper;if(n.on("click",(function(t){t.preventDefault();var n=e(this);if(n.addClass("active").siblings().removeClass("active"),l(n),a.sliderTab){var i=n.index();o.slideTo(i)}})),a.sliderTab){o.on("slideChange",(function(){var e=o.realIndex,t=n.eq(e);t.addClass("active").siblings().removeClass("active"),l(t)}));var r=o.activeIndex,c=n.eq(r);c.addClass("active").siblings().removeClass("active"),l(c)}function l(e){var t=e.position(),a=parseInt(e.css("margin-top"))||0,n=parseInt(e.css("margin-left"))||0;i.css("--height-set",e.outerHeight()+"px"),i.css("--width-set",e.outerWidth()+"px"),i.css("--pos-y",t.top+a+"px"),i.css("--pos-x",t.left+n+"px")}}))},e(".testi-thumb").length&&e(".testi-thumb").activateSliderThumbs({sliderTab:!0,tabButton:".tab-btn"}),e(".feature-thumb").length&&e(".feature-thumb").activateSliderThumbs({sliderTab:!0,tabButton:".tab-btn"});new Swiper(".cubeSwiper",{effect:"cube",grabCursor:!0,pauseOnMouseEnter:!0,speed:2e3,autoplay:{delay:2500,disableOnInteraction:!1},cubeEffect:{shadow:!1,slideShadows:!0,shadowOffset:20,shadowScale:.94},pagination:{el:".swiper-pagination"}});var o,r,c,l=".ajax-contact",d='[name="email"]',u=e(".form-messages");function h(){var t=e(l).serialize();(function(){var t,a=!0;function n(n){n=n.split(",");for(var i=0;i<n.length;i++)t=l+" "+n[i],e(t).val()?(e(t).removeClass("is-invalid"),a=!0):(e(t).addClass("is-invalid"),a=!1)}n('[name="name"],[name="email"],[name="subject"],[name="number"],[name="message"]'),e(d).val()&&e(d).val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)?(e(d).removeClass("is-invalid"),a=!0):(e(d).addClass("is-invalid"),a=!1);return a})()&&jQuery.ajax({url:e(l).attr("action"),data:t,type:"POST"}).done((function(t){u.removeClass("error"),u.addClass("success"),u.text(t),e(l+' input:not([type="submit"]),'+l+" textarea").val("")})).fail((function(e){u.removeClass("success"),u.addClass("error"),""!==e.responseText?u.html(e.responseText):u.html("Oops! An error occured and your message could not be sent.")}))}let p;function m(){window.innerWidth>991?(p||(p=new Lenis({lerp:.1}),p.on("scroll",ScrollTrigger.update),gsap.ticker.add(e=>{p&&p.raf(1e3*e)}),document.querySelectorAll(".allow-natural-scroll").forEach(e=>{e.addEventListener("wheel",e=>{e.stopPropagation()}),e.addEventListener("touchmove",e=>{e.stopPropagation()})})),p&&p.start()):p&&(p.stop(),p=null)}if(e(l).on("submit",(function(e){e.preventDefault(),h()})),o=".popup-search-box",r=".searchClose",c="show",e(".searchBoxToggler").on("click",(function(t){t.preventDefault(),e(o).addClass(c)})),e(o).on("click",(function(t){t.stopPropagation(),e(o).removeClass(c)})),e(o).find("form").on("click",(function(t){t.stopPropagation(),e(o).addClass(c)})),e(r).on("click",(function(t){t.preventDefault(),t.stopPropagation(),e(o).removeClass(c)})),function(t,a,n,i){e(a).on("click",(function(a){a.preventDefault(),e(t).addClass(i)})),e(t).on("click",(function(a){a.stopPropagation(),e(t).removeClass(i)})),e(t+" > div").on("click",(function(a){a.stopPropagation(),e(t).addClass(i)})),e(n).on("click",(function(a){a.preventDefault(),a.stopPropagation(),e(t).removeClass(i)}))}(".sidemenu-wrapper",".sideMenuToggler",".sideMenuCls","show"),e(".popup-image").magnificPopup({type:"image",mainClass:"mfp-zoom-in",removalDelay:260,gallery:{enabled:!0}}),e(".popup-video").magnificPopup({type:"iframe",mainClass:"mfp-zoom-in",removalDelay:260}),e(".popup-content").magnificPopup({type:"inline",midClick:!0}),e("[data-theme-color]").length>0&&e("[data-theme-color]").each((function(){var t=e(this).attr("data-theme-color");e(this).get(0).style.setProperty("--theme-color",t),e(this).removeAttr("data-theme-color")})),e(document).on("mouseover",".hover-item",(function(){e(this).addClass("item-active"),e(".hover-item").removeClass("item-active"),e(this).addClass("item-active")})),m(),window.addEventListener("resize",m),window.addEventListener("resize",m),e(document).on("DOMContentLoaded",(function(){if(e(".sticky-wrapper").length>0){function t(){e(".sticky-wrapper").hasClass("sticky")?e("#smooth-wrapper").css("padding-top","0"):(e(".th-header").outerHeight(),e("#smooth-wrapper").css("padding-top","0px"))}if(t(),e(window).on("resize",t),"undefined"!=typeof MutationObserver)new MutationObserver((function(e){e.forEach((function(e){"attributes"===e.type&&"class"===e.attributeName&&t()}))})).observe(document.querySelector(".sticky-wrapper"),{attributes:!0})}e(document).on("mousemove",(function(t){var a=t.pageX,n=t.pageY;e(".custom-element").stop().animate({left:a,top:n},300)}))})),e(".th-anim").length){gsap.registerPlugin(ScrollTrigger),document.querySelectorAll(".th-anim").forEach(e=>{let t=e.querySelector("img"),a=gsap.timeline({scrollTrigger:{trigger:e,toggleActions:"play none none none"}});a.set(e,{autoAlpha:1}),a.from(e,1.5,{xPercent:-100,ease:Power2.out}),a.from(t,1.5,{xPercent:100,scale:1.3,delay:-1.5,ease:Power2.out})})}if(gsap.utils.toArray(".th-parallax").forEach(e=>{const t=e.querySelector("img");gsap.timeline({scrollTrigger:{trigger:e,scrub:!0,pin:!1}}).fromTo(t,{yPercent:-15,scale:1.2,ease:"none"},{yPercent:15,scale:1.2,ease:"none"})}),e(".cursor-follower").length>0){var g=e(".cursor-follower"),f=0,v=0,b=0,y=0;TweenMax.to({},.016,{repeat:-1,onRepeat:function(){f+=(b-f)/9,v+=(y-v)/9,TweenMax.set(g,{css:{left:f-12,top:v-12}})}}),e(document).on("mousemove",(function(e){b=e.clientX,y=e.clientY})),e(".slider-area").on("mouseenter",(function(){g.addClass("d-none")})),e(".slider-area").on("mouseleave",(function(){g.removeClass("d-none")}))}const w=document.querySelector(".slider-drag-cursor"),C={x:window.innerWidth/2,y:window.innerHeight/2},k={x:C.x,y:C.y},x=gsap.quickSetter(w,"x","px"),T=gsap.quickSetter(w,"y","px");function P(t,a,n,i){var s=t.text().split(a),o="";s.length&&(e(s).each((function(e,t){o+='<span class="'+n+(e+1)+'">'+t+"</span>"+i})),t.empty().append(o))}window.addEventListener("pointermove",e=>{k.x=e.x,k.y=e.y}),gsap.set(".slider-drag-cursor",{xPercent:-50,yPercent:-50}),gsap.ticker.add(()=>{const e=1-Math.pow(0,gsap.ticker.deltaRatio());C.x+=(k.x-C.x)*e,C.y+=(k.y-C.y)*e,x(C.x),T(C.y)}),e(".slider-drag-wrap").on("mouseenter mouseleave",(function(t){e(".slider-drag-cursor").toggleClass("active","mouseenter"===t.type)})),e(".slider-drag-wrap a").on("mouseenter mouseleave",(function(t){e(".slider-drag-cursor").toggleClass("active","mouseenter"!==t.type)})),e(document).on("DOMContentLoaded",(function(){e(".choose-progress-bar .progress-fill .counter").each((function(){var t=e(this).html();parseInt(t);e(this).parent().css({height:t}).animate({height:t},1e3)}));var t=0,a=0;e(".choose-progress-bar .progress-fill .counter").each((function(){t+=parseInt(e(this).html()),a++}));var n=Math.round(t/a)+"%";e("#progress-counter").html(n)}));var M={init:function(){return this.each((function(){P(e(this),"","char","")}))},words:function(){return this.each((function(){P(e(this)," ","word"," ")}))},lines:function(){return this.each((function(){var t="eefec303079ad17405c889e092e105b0";P(e(this).children("br").replaceWith(t).end(),t,"line","")}))}};function S(e){return parseInt(e,10)}e.fn.lettering=function(t){return t&&M[t]?M[t].apply(this,[].slice.call(arguments,1)):"letters"!==t&&t?(e.error("Method "+t+" does not exist on jQuery.lettering"),this):M.init.apply(this,[].slice.call(arguments,0))},e(".discount-anime").lettering(),e.fn.sectionPosition=function(t,a){e(this).each((function(){var n,i,s,o,r,c=e(this);n=Math.floor(c.height()/2),i=c.attr(t),s=c.attr(a),o=S(e(s).css("padding-top")),r=S(e(s).css("padding-bottom")),"top-half"===i?(e(s).css("padding-bottom",r+n+"px"),c.css("margin-top","-"+n+"px")):"bottom-half"===i&&(e(s).css("padding-top",o+n+"px"),c.css("margin-bottom","-"+n+"px"))}))};function L(){e(".feature-circle .progressbar").each((function(){var t=e(this).attr("data-path-color"),a=e(this).offset().top,n=e(window).scrollTop(),i=e(this).find(".circle").attr("data-percent"),s=(parseInt(i,10),parseInt(100,10),e(this).data("animate"));a<n+e(window).height()-30&&!s&&(e(this).data("animate",!0),e(this).find(".circle").circleProgress({startAngle:-Math.PI/2,value:i/100,size:100,thickness:6,emptyFill:"#33425A",lineCap:"round",fill:{color:t}}).on("circle-animation-progress",(function(t,a,n){e(this).find(".circle-num").text((100*n).toFixed(0)+"%")})).stop())})),e(".skill-circle .progressbar").each((function(){var t=e(this).attr("data-path-color"),a=e(this).offset().top,n=e(window).scrollTop(),i=e(this).find(".circle").attr("data-percent"),s=(parseInt(i,10),parseInt(100,10),e(this).data("animate"));a<n+e(window).height()-30&&!s&&(e(this).data("animate",!0),e(this).find(".circle").circleProgress({startAngle:-Math.PI/2,value:i/100,size:176,thickness:8,emptyFill:"#EFF1F9",lineCap:"round",fill:{color:t}}).on("circle-animation-progress",(function(t,a,n){e(this).find(".circle-num").text((100*n).toFixed(0)+"%")})).stop())}))}e("[data-sec-pos]").length&&e("[data-sec-pos]").imagesLoaded((function(){e("[data-sec-pos]").sectionPosition("data-sec-pos","data-pos-for")})),e("#serviceAccordion").on("show.bs.collapse",(function(t){var a=e(t.target).closest(".accordion-item").index();e(".th-accordion_images img").removeClass("active"),e(".th-accordion_images img").eq(a).addClass("active")})),e(".accordion-item-wrapp li:first-child").addClass("active"),e(".according-img-tab").hide(),e(".according-img-tab:first").show(),e(".accordion-item-wrapp .accordion-item-content").mouseenter((function(){e(".accordion-item-wrapp .accordion-item-content").removeClass("active"),e(".according-img-tab").hide();var t=e(this).find(".accordion-tab-item").attr("data-bs-target");return e(t).fadeIn(),!1})),e(".filter-active").imagesLoaded((function(){if(e(".filter-active").length>0){var t=e(".filter-active").isotope({itemSelector:".filter-item",filter:"*",masonry:{columnWidth:1}});e(".filter-menu-active").on("click","button",(function(){var a=e(this).attr("data-filter");t.isotope({filter:a})})),e(".filter-menu-active").on("click","button",(function(t){t.preventDefault(),e(this).addClass("active"),e(this).siblings(".active").removeClass("active")}))}})),e(".masonary-active").imagesLoaded((function(){e(".masonary-active").length>0&&e(".masonary-active").isotope({itemSelector:".filter-item",filter:"*",masonry:{columnWidth:1}})})),e(".masonary-active, .woocommerce-Reviews .comment-list").imagesLoaded((function(){var t=".masonary-active, .woocommerce-Reviews .comment-list";e(t).length>0&&e(t).isotope({itemSelector:".filter-item, .woocommerce-Reviews .comment-list li",filter:"*",masonry:{columnWidth:1}}),e('[data-bs-toggle="tab"]').on("shown.bs.tab",(function(a){e(t).isotope({filter:"*"})}))})),e(".counter-number").counterUp({delay:10,time:1e3}),e.fn.shapeMockup=function(){e(this).each((function(){var t=e(this),a=t.data("top"),n=t.data("right"),i=t.data("bottom"),s=t.data("left");t.css({top:a,right:n,bottom:i,left:s}).removeAttr("data-top").removeAttr("data-right").removeAttr("data-bottom").removeAttr("data-left").parent().addClass("shape-mockup-wrap")}))},e(".shape-mockup")&&e(".shape-mockup").shapeMockup(),e((function(){e(".progress-bar").each((function(){e(this).find(".progress-content").animate({width:e(this).attr("data-percentage")},2e3),e(this).find(".progress-number-mark").animate({left:e(this).attr("data-percentage")},{duration:2e3,step:function(t,a){var n=Math.round(t);e(this).find(".percent").html(n+"%")}})}))})),e(".price_slider").slider({range:!0,min:10,max:100,values:[10,75],slide:function(t,a){e(".from").text("$"+a.values[0]),e(".to").text("$"+a.values[1])}}),e(".from").text("$"+e(".price_slider").slider("values",0)),e(".to").text("$"+e(".price_slider").slider("values",1)),L(),e(window).scroll(L);var E=e(window);function D(){e(".countervalue").each((function(){if(e(this).hasClass("start")){var t=e(this).offset().top,a=t+e(this).outerHeight(),n=e(window).scrollTop(),i=n+e(window).height();if(a>n&&t<i){e(this).removeClass("start"),e(".countervalue").text();var s=e(this).text();s==Math.floor(s)?e(this).animate({Counter:e(this).text()},{duration:2800,easing:"swing",step:function(t){e(this).text(Math.ceil(t)+"%")}}):e(this).animate({Counter:e(this).text()},{duration:2800,easing:"swing",step:function(t){e(this).text(t.toFixed(2)+"$")}}),e(".radial-progress").each((function(t,a){e(this).find(e("circle.bar--animated")).removeAttr("style");var n=e(this).offset().top,i=n+e(this).outerHeight(),s=e(window).scrollTop(),o=s+e(window).height();if(i>s&&n<o){var r=e(a).data("countervalue"),c=e(this).find(e("circle.bar--animated")).attr("r"),l=2*Math.PI*c,d=l-r*l/100;e(this).find(e("circle.bar--animated")).animate({"stroke-dashoffset":d},2800)}}))}}}))}E.on("scroll",D),E.on("load",D),e("#ship-to-different-address-checkbox").on("change",(function(){e(this).is(":checked")?e("#ship-to-different-address").next(".shipping_address").slideDown():e("#ship-to-different-address").next(".shipping_address").slideUp()})),e(".woocommerce-form-login-toggle a").on("click",(function(t){t.preventDefault(),e(".woocommerce-form-login").slideToggle()})),e(".woocommerce-form-coupon-toggle a").on("click",(function(t){t.preventDefault(),e(".woocommerce-form-coupon").slideToggle()})),e(".shipping-calculator-button").on("click",(function(t){t.preventDefault(),e(this).next(".shipping-calculator-form").slideToggle()})),e('.wc_payment_methods input[type="radio"]:checked').siblings(".payment_box").show(),e('.wc_payment_methods input[type="radio"]').each((function(){e(this).on("change",(function(){e(".payment_box").slideUp(),e(this).siblings(".payment_box").slideDown()}))})),e(".rating-select .stars a").each((function(){e(this).on("click",(function(t){t.preventDefault(),e(this).siblings().removeClass("active"),e(this).parent().parent().addClass("selected"),e(this).addClass("active")}))})),e(".quantity-plus").each((function(){e(this).on("click",(function(t){t.preventDefault();var a=e(this).siblings(".qty-input"),n=parseInt(a.val(),10);isNaN(n)||a.val(n+1)}))})),e(".quantity-minus").each((function(){e(this).on("click",(function(t){t.preventDefault();var a=e(this).siblings(".qty-input"),n=parseInt(a.val(),10);!isNaN(n)&&n>1&&a.val(n-1)}))})),e(".color-switch-btns button").each((function(){const t=e(this),a=t.data("color");t.css("--theme-color",a),t.on("click",(function(){const t=e(this).data("color");e("body").css("--theme-color",t)}))})),e("[theme-color]").length>0&&e("[theme-color]").each((function(){var t=e(this).attr("theme-color");e(this).get(0).style.setProperty("--theme-color",t),e(this).removeAttr("theme-color")})),e("[title-color]").length>0&&e("[title-color]").each((function(){var t=e(this).attr("title-color");e(this).get(0).style.setProperty("--title-color",t),e(this).removeAttr("title-color")})),e(document).on("click",".switchIcon",(function(){e(".color-scheme-wrap").toggleClass("active")}));var A=document.getElementById("filt-monthly"),I=document.getElementById("filt-yearly"),q=document.getElementById("switcher"),B=document.getElementById("monthly"),j=document.getElementById("yearly");e(".pricing-tabs").length&&(A.addEventListener("click",(function(){q.checked=!1,A.classList.add("toggler--is-active"),I.classList.remove("toggler--is-active"),B.classList.remove("hide"),j.classList.add("hide")})),I.addEventListener("click",(function(){q.checked=!0,I.classList.add("toggler--is-active"),A.classList.remove("toggler--is-active"),B.classList.add("hide"),j.classList.remove("hide")})),q.addEventListener("click",(function(){I.classList.toggle("toggler--is-active"),A.classList.toggle("toggler--is-active"),B.classList.toggle("hide"),j.classList.toggle("hide")})));new WOW({boxClass:"wow",animateClass:"animated",offset:0,mobile:!0,live:!0});(new WOW).init(),e(".th-progress").each((function(){var t=e(this).data("progress-value")/100,a=e(this).find(".half-circle"),n=e(this).find("text"),i=251.2-251.2*t;a.css({transition:"stroke-dashoffset 1s ease-in-out","stroke-dashoffset":i}),e({progressValue:0}).animate({progressValue:100*t},{duration:1e3,step:function(e){n.text(Math.round(e)+"%")}})})),e("[data-background]").each((function(){let t=e(this).attr("data-background");t&&e(this).css("background-image",`url(${t})`)})),e(".project-item").on("mouseenter mouseleave",(function(t){let a="mouseenter"===t.type?e(this).data("bg"):"";e(".project-area2").attr("data-background",a).css("background-image",a?`url(${a})`:"")})),window.addEventListener("contextmenu",(function(e){e.preventDefault()}),!1),document.onkeydown=function(e){return 123!=event.keyCode&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="I".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="C".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="J".charCodeAt(0))&&((!e.ctrlKey||e.keyCode!="U".charCodeAt(0))&&void 0))))}}(jQuery);
+(function ($) {
+    "use strict";
+
+    // Function to handle smooth scrolling for anchors
+    function setupSmoothScroll(selector) {
+        $(selector).length > 0 && $(selector).each(function () {
+            var links = $(this).find("a");
+            $(this).find(links).each(function () {
+                $(this).on("click", function () {
+                    var target = $(this.getAttribute("href"));
+                    if (target.length) {
+                        event.preventDefault();
+                        $("html, body").stop().animate({
+                            scrollTop: target.offset().top - 10
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    }
+
+    // 1. Preloader
+    $(window).on("load", function () {
+        $(".preloader").fadeOut();
+    });
+
+    // 2. Nice Select (Custom dropdown/select styling)
+    if ($(".nice-select").length) {
+        $(".nice-select").niceSelect();
+    }
+
+    // 3. Mobile Menu Plugin (thmobilemenu)
+    $.fn.thmobilemenu = function (options) {
+        var settings = $.extend({
+            menuToggleBtn: ".th-menu-toggle",
+            bodyToggleClass: "th-body-visible",
+            subMenuClass: "th-submenu",
+            subMenuParent: "th-item-has-children",
+            subMenuParentToggle: "th-active",
+            meanExpandClass: "th-mean-expand",
+            appendElement: '<span class="th-mean-expand"></span>',
+            subMenuToggleClass: "th-open",
+            toggleSpeed: 400
+        }, options);
+
+        return this.each(function () {
+            var menu = $(this);
+
+            function toggleMenu() {
+                menu.toggleClass(settings.bodyToggleClass);
+                var subMenuSelector = "." + settings.subMenuClass;
+                $(subMenuSelector).each(function () {
+                    if ($(this).hasClass(settings.subMenuToggleClass)) {
+                        $(this).removeClass(settings.subMenuToggleClass);
+                        $(this).css("display", "none");
+                        $(this).parent().removeClass(settings.subMenuParentToggle);
+                    }
+                });
+            }
+
+            // Initialize menu items
+            menu.find("li").each(function () {
+                var subMenu = $(this).find("ul");
+                subMenu.addClass(settings.subMenuClass);
+                subMenu.css("display", "none");
+                subMenu.parent().addClass(settings.subMenuParent);
+                subMenu.prev("a").append(settings.appendElement);
+                subMenu.next("a").append(settings.appendElement);
+            });
+
+            // Handle submenu expansion click
+            var expanderSelector = "." + settings.meanExpandClass;
+            $(expanderSelector).each(function () {
+                $(this).on("click", function (event) {
+                    var $this = $(this);
+                    event.preventDefault();
+                    var parentLink = $this.parent();
+                    
+                    if (parentLink.next("ul").length > 0) {
+                        parentLink.parent().toggleClass(settings.subMenuParentToggle);
+                        parentLink.next("ul").slideToggle(settings.toggleSpeed);
+                        parentLink.next("ul").toggleClass(settings.subMenuToggleClass);
+                    } else if (parentLink.prev("ul").length > 0) {
+                        parentLink.parent().toggleClass(settings.subMenuParentToggle);
+                        parentLink.prev("ul").slideToggle(settings.toggleSpeed);
+                        parentLink.prev("ul").toggleClass(settings.subMenuToggleClass);
+                    }
+                });
+            });
+
+            // Handle menu toggle button click
+            $(settings.menuToggleBtn).each(function () {
+                $(this).on("click", function () {
+                    toggleMenu();
+                });
+            });
+            
+            // Close menu when clicking outside
+            menu.on("click", function (event) {
+                event.stopPropagation();
+                toggleMenu();
+            });
+
+            // Prevent closing when clicking inside the menu wrapper (divs)
+            menu.find("div").on("click", function (event) {
+                event.stopPropagation();
+            });
+        });
+    };
+
+    // Initialize mobile menu
+    $(".th-menu-wrapper").thmobilemenu();
+
+    // 4. Sticky Header
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 500) {
+            $(".sticky-wrapper").addClass("sticky");
+        } else {
+            $(".sticky-wrapper").removeClass("sticky");
+        }
+    });
+
+    // 5. Smooth Scroll for Onepage Nav and Scroll Down
+    setupSmoothScroll(".onepage-nav");
+    setupSmoothScroll(".scroll-down");
+
+    // 6. Scroll Top Button (with SVG progress)
+    if ($(".scroll-top").length) {
+        var scrollTopBtn = document.querySelector(".scroll-top");
+        var path = document.querySelector(".scroll-top path");
+        var pathLength = path.getTotalLength();
+        
+        path.style.transition = path.style.WebkitTransition = "none";
+        path.style.strokeDasharray = pathLength + " " + pathLength;
+        path.style.strokeDashoffset = pathLength;
+        path.getBoundingClientRect(); // Forces layout
+        path.style.transition = path.style.WebkitTransition = "stroke-dashoffset 10ms linear";
+
+        var updateScrollTopPath = function () {
+            var scrollTop = $(window).scrollTop();
+            var docHeight = $(document).height() - $(window).height();
+            var offset = pathLength - scrollTop * pathLength / docHeight;
+            path.style.strokeDashoffset = offset;
+        };
+
+        updateScrollTopPath();
+        $(window).scroll(updateScrollTopPath);
+
+        jQuery(window).on("scroll", function () {
+            if (jQuery(this).scrollTop() > 50) {
+                jQuery(scrollTopBtn).addClass("show");
+            } else {
+                jQuery(scrollTopBtn).removeClass("show");
+            }
+        });
+
+        jQuery(scrollTopBtn).on("click", function (event) {
+            event.preventDefault();
+            jQuery("html, body").animate({
+                scrollTop: 0
+            }, 750);
+            return false;
+        });
+    }
+
+    // 7. Dynamic Backgrounds (data-bg-src, data-bg-color)
+    $("[data-bg-src]").length > 0 && $("[data-bg-src]").each(function () {
+        var src = $(this).attr("data-bg-src");
+        $(this).css("background-image", "url(" + src + ")");
+        $(this).removeAttr("data-bg-src").addClass("background-image");
+    });
+
+    $("[data-bg-color]").length > 0 && $("[data-bg-color]").each(function () {
+        var color = $(this).attr("data-bg-color");
+        $(this).css("background-color", color);
+        $(this).removeAttr("data-bg-color");
+    });
+
+    // Custom CSS variable for border color
+    $("[data-border]").each(function () {
+        var border = $(this).data("border");
+        $(this).css("--th-border-color", border);
+    });
+
+    // Custom CSS masking
+    $("[data-mask-src]").length > 0 && $("[data-mask-src]").each(function () {
+        var maskSrc = $(this).attr("data-mask-src");
+        $(this).css({
+            "mask-image": "url(" + maskSrc + ")",
+            "-webkit-mask-image": "url(" + maskSrc + ")"
+        });
+        $(this).addClass("bg-mask");
+        $(this).removeAttr("data-mask-src");
+    });
+
+    // 8. Swiper Slider Initialization
+    $(".th-slider").each(function () {
+        var sliderContainer = $(this);
+        var sliderOptionsData = $(this).data("slider-options");
+        var prevBtn = sliderContainer.find(".slider-prev");
+        var nextBtn = sliderContainer.find(".slider-next");
+        var pagination = sliderContainer.find(".slider-pagination");
+        var autoplaySettings = sliderOptionsData.autoplay;
+
+        var defaultOptions = {
+            slidesPerView: 1,
+            spaceBetween: sliderOptionsData.spaceBetween ? sliderOptionsData.spaceBetween : 24,
+            loop: sliderOptionsData.loop != 0,
+            speed: sliderOptionsData.speed ? sliderOptionsData.speed : 1000,
+            autoplay: autoplaySettings || {
+                delay: 6000,
+                disableOnInteraction: false
+            },
+            navigation: {
+                nextEl: nextBtn.get(0),
+                prevEl: prevBtn.get(0)
+            },
+            pagination: {
+                el: pagination.get(0),
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '" aria-label="Go to Slide ' + (index + 1) + '"></span>';
+                }
+            }
+        };
+
+        var mergedOptions = JSON.parse(sliderContainer.attr("data-slider-options"));
+        mergedOptions = $.extend({}, defaultOptions, mergedOptions);
+
+        new Swiper(sliderContainer.get(0), mergedOptions);
+
+        if ($(".slider-area").length > 0) {
+            $(".slider-area").closest(".container").parent().addClass("arrow-wrap");
+        }
+    });
+
+    // Animation attributes (data-ani, data-ani-delay)
+    $("[data-ani]").each(function () {
+        var animation = $(this).data("ani");
+        $(this).addClass(animation);
+    });
+
+    $("[data-ani-delay]").each(function () {
+        var delay = $(this).data("ani-delay");
+        $(this).css("animation-delay", delay);
+    });
+
+    // Swiper navigation (external buttons)
+    $("[data-slider-prev], [data-slider-next]").on("click", function () {
+        var targetSelector = $(this).data("slider-prev") || $(this).data("slider-next");
+        var targetSlider = $(targetSelector);
+        
+        if (targetSlider.length) {
+            var swiperInstance = targetSlider[0].swiper;
+            if (swiperInstance) {
+                if ($(this).data("slider-prev")) {
+                    swiperInstance.slidePrev();
+                } else {
+                    swiperInstance.slideNext();
+                }
+            }
+        }
+    });
+
+    // 9. Slider Thumbs / Tab Indicator Plugin
+    $.fn.activateSliderThumbs = function (options) {
+        var settings = $.extend({
+            sliderTab: false,
+            tabButton: ".tab-btn"
+        }, options);
+
+        return this.each(function () {
+            var container = $(this);
+            var buttons = container.find(settings.tabButton);
+            var indicator = $('<span class="indicator"></span>').appendTo(container);
+            var sliderSelector = container.data("slider-tab");
+            var swiperInstance = $(sliderSelector)[0].swiper;
+
+            function updateIndicator(activeButton) {
+                var position = activeButton.position();
+                var marginTop = parseInt(activeButton.css("margin-top")) || 0;
+                var marginLeft = parseInt(activeButton.css("margin-left")) || 0;
+                
+                indicator.css("--height-set", activeButton.outerHeight() + "px");
+                indicator.css("--width-set", activeButton.outerWidth() + "px");
+                indicator.css("--pos-y", position.top + marginTop + "px");
+                indicator.css("--pos-x", position.left + marginLeft + "px");
+            }
+
+            buttons.on("click", function (event) {
+                event.preventDefault();
+                var button = $(this);
+                button.addClass("active").siblings().removeClass("active");
+                updateIndicator(button);
+
+                if (settings.sliderTab) {
+                    var index = button.index();
+                    swiperInstance.slideTo(index);
+                }
+            });
+
+            if (settings.sliderTab) {
+                swiperInstance.on("slideChange", function () {
+                    var realIndex = swiperInstance.realIndex;
+                    var activeButton = buttons.eq(realIndex);
+                    activeButton.addClass("active").siblings().removeClass("active");
+                    updateIndicator(activeButton);
+                });
+
+                var activeIndex = swiperInstance.activeIndex;
+                var initialButton = buttons.eq(activeIndex);
+                initialButton.addClass("active").siblings().removeClass("active");
+                updateIndicator(initialButton);
+            }
+        });
+    };
+
+    // Initialize thumb sliders
+    if ($(".testi-thumb").length) {
+        $(".testi-thumb").activateSliderThumbs({
+            sliderTab: true,
+            tabButton: ".tab-btn"
+        });
+    }
+    if ($(".feature-thumb").length) {
+        $(".feature-thumb").activateSliderThumbs({
+            sliderTab: true,
+            tabButton: ".tab-btn"
+        });
+    }
+
+    // Cube Swiper
+    new Swiper(".cubeSwiper", {
+        effect: "cube",
+        grabCursor: true,
+        pauseOnMouseEnter: true,
+        speed: 2000,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false
+        },
+        cubeEffect: {
+            shadow: false,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: .94
+        },
+        pagination: {
+            el: ".swiper-pagination"
+        }
+    });
+
+    // 10. AJAX Contact Form
+    var contactFormSelector = ".ajax-contact";
+    var emailInputSelector = '[name="email"]';
+    var formMessages = $(".form-messages");
+
+    function validateAndSubmitForm() {
+        var formData = $(contactFormSelector).serialize();
+
+        // Validation logic
+        function isValidForm() {
+            var isValid = true;
+            var fieldsToValidate = '[name="name"],[name="email"],[name="subject"],[name="number"],[name="message"]';
+
+            // Check non-empty fields
+            fieldsToValidate.split(",").forEach(function (field) {
+                var element = $(contactFormSelector + " " + field);
+                if (element.val()) {
+                    element.removeClass("is-invalid");
+                    isValid = true;
+                } else {
+                    element.addClass("is-invalid");
+                    isValid = false;
+                }
+            });
+
+            // Check email format
+            var emailValue = $(emailInputSelector).val();
+            if (emailValue && emailValue.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+                $(emailInputSelector).removeClass("is-invalid");
+                isValid = true;
+            } else {
+                $(emailInputSelector).addClass("is-invalid");
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        if (isValidForm()) {
+            jQuery.ajax({
+                url: $(contactFormSelector).attr("action"),
+                data: formData,
+                type: "POST"
+            }).done(function (response) {
+                formMessages.removeClass("error").addClass("success").text(response);
+                $(contactFormSelector + ' input:not([type="submit"]),' + contactFormSelector + " textarea").val("");
+            }).fail(function (error) {
+                formMessages.removeClass("success").addClass("error");
+                if (error.responseText !== "") {
+                    formMessages.html(error.responseText);
+                } else {
+                    formMessages.html("Oops! An error occurred and your message could not be sent.");
+                }
+            });
+        }
+    }
+    
+    // Handle form submission
+    $(contactFormSelector).on("submit", function (event) {
+        event.preventDefault();
+        validateAndSubmitForm();
+    });
+
+    // 11. Custom Smooth Scroll (Lenis/GSAP)
+    let lenisInstance;
+
+    function initLenis() {
+        // Only initialize on desktop (window width > 991px)
+        if (window.innerWidth > 991) {
+            if (!lenisInstance) {
+                lenisInstance = new Lenis({
+                    lerp: .1
+                });
+                lenisInstance.on("scroll", ScrollTrigger.update);
+                gsap.ticker.add(function (time) {
+                    if (lenisInstance) lenisInstance.raf(time * 1000);
+                });
+                
+                // Prevent Lenis from hijacking scroll on specific elements
+                document.querySelectorAll(".allow-natural-scroll").forEach(function (el) {
+                    el.addEventListener("wheel", function (e) {
+                        e.stopPropagation();
+                    });
+                    el.addEventListener("touchmove", function (e) {
+                        e.stopPropagation();
+                    });
+                });
+            }
+            if (lenisInstance) lenisInstance.start();
+        } else {
+            if (lenisInstance) {
+                lenisInstance.stop();
+                lenisInstance = null;
+            }
+        }
+    }
+    
+    // Initialize on load and resize
+    initLenis();
+    window.addEventListener("resize", initLenis);
+
+    // 14. Magnific Popup (Lightbox)
+    $(".popup-image").magnificPopup({
+        type: "image",
+        mainClass: "mfp-zoom-in",
+        removalDelay: 260,
+        gallery: {
+            enabled: true
+        }
+    });
+
+    $(".popup-video").magnificPopup({
+        type: "iframe",
+        mainClass: "mfp-zoom-in",
+        removalDelay: 260
+    });
+
+    $(".popup-content").magnificPopup({
+        type: "inline",
+        midClick: true
+    });
+
+    // 15. Dynamic Theme Colors (CSS Variables)
+    $("[data-theme-color]").length > 0 && $("[data-theme-color]").each(function () {
+        var color = $(this).attr("data-theme-color");
+        $(this).get(0).style.setProperty("--theme-color", color);
+        $(this).removeAttr("data-theme-color");
+    });
+    
+    // 16. Hover Item Active State
+    $(document).on("mouseover", ".hover-item", function () {
+        $(".hover-item").removeClass("item-active");
+        $(this).addClass("item-active");
+    });
+
+    // 17. Sticky Header Padding Fix on DOM Content Loaded
+    $(document).on("DOMContentLoaded", function () {
+        if ($(".sticky-wrapper").length > 0) {
+            function updatePadding() {
+                if ($(".sticky-wrapper").hasClass("sticky")) {
+                    $("#smooth-wrapper").css("padding-top", "0");
+                } else {
+                    // Original code seems to calculate header height but then sets to "0px"
+                    // var headerHeight = $(".th-header").outerHeight();
+                    $("#smooth-wrapper").css("padding-top", "0px");
+                }
+            }
+            updatePadding();
+            $(window).on("resize", updatePadding);
+
+            // Observe class changes on sticky-wrapper
+            if (typeof MutationObserver !== 'undefined') {
+                new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+                            updatePadding();
+                        }
+                    });
+                }).observe(document.querySelector(".sticky-wrapper"), {
+                    attributes: true
+                });
+            }
+        }
+        
+        // Custom Mouse Element
+        $(document).on("mousemove", function (event) {
+            var mouseX = event.pageX;
+            var mouseY = event.pageY;
+            $(".custom-element").stop().animate({
+                left: mouseX,
+                top: mouseY
+            }, 300);
+        });
+    });
+
+    // 18. GSAP Scroll Animation (th-anim)
+    if ($(".th-anim").length) {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll(".th-anim").forEach(function (element) {
+            let image = element.querySelector("img");
+            let timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: element,
+                    toggleActions: "play none none none"
+                }
+            });
+            timeline.set(element, {
+                autoAlpha: 1
+            });
+            timeline.from(element, 1.5, {
+                xPercent: -100,
+                ease: Power2.out
+            });
+            timeline.from(image, 1.5, {
+                xPercent: 100,
+                scale: 1.3,
+                delay: -1.5,
+                ease: Power2.out
+            });
+        });
+    }
+
+    // 19. GSAP Parallax (th-parallax)
+    gsap.utils.toArray(".th-parallax").forEach(function (element) {
+        const image = element.querySelector("img");
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: element,
+                scrub: true,
+                pin: false
+            }
+        }).fromTo(image, {
+            yPercent: -15,
+            scale: 1.2,
+            ease: "none"
+        }, {
+            yPercent: 15,
+            scale: 1.2,
+            ease: "none"
+        });
+    });
+
+    // 20. Cursor Follower (slider-area)
+    if ($(".cursor-follower").length > 0) {
+        var follower = $(".cursor-follower");
+        var followerX = 0,
+            followerY = 0,
+            mouseX = 0,
+            mouseY = 0;
+
+        TweenMax.to({}, 0.016, {
+            repeat: -1,
+            onRepeat: function () {
+                followerX += (mouseX - followerX) / 9;
+                followerY += (mouseY - followerY) / 9;
+                TweenMax.set(follower, {
+                    css: {
+                        left: followerX - 12,
+                        top: followerY - 12
+                    }
+                });
+            }
+        });
+
+        $(document).on("mousemove", function (event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        $(".slider-area").on("mouseenter", function () {
+            follower.addClass("d-none");
+        }).on("mouseleave", function () {
+            follower.removeClass("d-none");
+        });
+    }
+
+    // 21. Slider Drag Cursor (GSAP)
+    const dragCursor = document.querySelector(".slider-drag-cursor");
+    const cursorPosition = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    };
+    const targetPosition = {
+        x: cursorPosition.x,
+        y: cursorPosition.y
+    };
+    const setCursorX = gsap.quickSetter(dragCursor, "x", "px");
+    const setCursorY = gsap.quickSetter(dragCursor, "y", "px");
+
+    // Function to split text into spans
+    function splitText(element, delimiter, classNamePrefix, suffix) {
+        var text = element.text();
+        var parts = text.split(delimiter);
+        var output = "";
+        
+        if (parts.length) {
+            $(parts).each(function (index, part) {
+                output += '<span class="' + classNamePrefix + (index + 1) + '">' + part + "</span>" + suffix;
+            });
+            element.empty().append(output);
+        }
+    }
+
+    window.addEventListener("pointermove", function (event) {
+        targetPosition.x = event.x;
+        targetPosition.y = event.y;
+    });
+
+    gsap.set(".slider-drag-cursor", {
+        xPercent: -50,
+        yPercent: -50
+    });
+
+    gsap.ticker.add(function () {
+        const easing = 1 - Math.pow(0, gsap.ticker.deltaRatio());
+        cursorPosition.x += (targetPosition.x - cursorPosition.x) * easing;
+        cursorPosition.y += (targetPosition.y - cursorPosition.y) * easing;
+        setCursorX(cursorPosition.x);
+        setCursorY(cursorPosition.y);
+    });
+
+    $(".slider-drag-wrap").on("mouseenter mouseleave", function (event) {
+        $(".slider-drag-cursor").toggleClass("active", event.type === "mouseenter");
+    });
+
+    $(".slider-drag-wrap a").on("mouseenter mouseleave", function (event) {
+        // Toggle active if it's NOT mouseenter (i.e., on mouseleave, for the link)
+        $(".slider-drag-cursor").toggleClass("active", event.type !== "mouseenter");
+    });
+
+    // 22. Progress Bar Counter (choose-progress-bar)
+    $(document).on("DOMContentLoaded", function () {
+        $(".choose-progress-bar .progress-fill .counter").each(function () {
+            var value = $(this).html();
+            $(this).parent().css({
+                height: value
+            }).animate({
+                height: value
+            }, 1000);
+        });
+
+        // Calculate average progress
+        var totalValue = 0,
+            count = 0;
+        $(".choose-progress-bar .progress-fill .counter").each(function () {
+            totalValue += parseInt($(this).html());
+            count++;
+        });
+        
+        if(count > 0) {
+            var average = Math.round(totalValue / count) + "%";
+            $("#progress-counter").html(average);
+        }
+    });
+
+    // 23. Lettering.js Custom Implementation (discount-anime)
+    var LetteringMethods = {
+        init: function () {
+            return this.each(function () {
+                splitText($(this), "", "char", ""); // Split by character
+            });
+        },
+        words: function () {
+            return this.each(function () {
+                splitText($(this), " ", "word", " "); // Split by word
+            });
+        },
+        lines: function () {
+            return this.each(function () {
+                var lineBreaker = "eefec303079ad17405c889e092e105b0"; // Unique string to replace <br>
+                splitText($(this).children("br").replaceWith(lineBreaker).end(), lineBreaker, "line", ""); // Split by line
+            });
+        }
+    };
+
+    function toInt(value) {
+        return parseInt(value, 10);
+    }
+
+    $.fn.lettering = function (method) {
+        if (method && LetteringMethods[method]) {
+            return LetteringMethods[method].apply(this, [].slice.call(arguments, 1));
+        } else if (method === "letters" || !method) {
+            return LetteringMethods.init.apply(this, [].slice.call(arguments, 0));
+        } else {
+            $.error("Method " + method + " does not exist on jQuery.lettering");
+            return this;
+        }
+    };
+
+    $(".discount-anime").lettering();
+
+    // 24. Section Position Adjustment (data-sec-pos)
+    $.fn.sectionPosition = function (posAttribute, forAttribute) {
+        $(this).each(function () {
+            var $this = $(this);
+            var halfHeight = Math.floor($this.height() / 2);
+            var positionType = $this.attr(posAttribute);
+            var forSelector = $this.attr(forAttribute);
+            var $forElement = $(forSelector);
+
+            var paddingTop = toInt($forElement.css("padding-top"));
+            var paddingBottom = toInt($forElement.css("padding-bottom"));
+
+            if (positionType === "top-half") {
+                $forElement.css("padding-bottom", paddingBottom + halfHeight + "px");
+                $this.css("margin-top", "-" + halfHeight + "px");
+            } else if (positionType === "bottom-half") {
+                $forElement.css("padding-top", paddingTop + halfHeight + "px");
+                $this.css("margin-bottom", "-" + halfHeight + "px");
+            }
+        });
+    };
+
+    // 25. Circle Progress Bars (Feature and Skill)
+    function animateCircleProgress() {
+        // Feature Circle
+        $(".feature-circle .progressbar").each(function () {
+            var pathColor = $(this).attr("data-path-color");
+            var offsetTop = $(this).offset().top;
+            var scrollTop = $(window).scrollTop();
+            var percent = $(this).find(".circle").attr("data-percent");
+            var hasAnimated = $(this).data("animate");
+
+            if (offsetTop < scrollTop + $(window).height() - 30 && !hasAnimated) {
+                $(this).data("animate", true);
+                $(this).find(".circle").circleProgress({
+                    startAngle: -Math.PI / 2,
+                    value: percent / 100,
+                    size: 100,
+                    thickness: 6,
+                    emptyFill: "#33425A",
+                    lineCap: "round",
+                    fill: {
+                        color: pathColor
+                    }
+                }).on("circle-animation-progress", function (event, progress, stepValue) {
+                    $(this).find(".circle-num").text((100 * stepValue).toFixed(0) + "%");
+                }).stop();
+            }
+        });
+        
+        // Skill Circle
+        $(".skill-circle .progressbar").each(function () {
+            var pathColor = $(this).attr("data-path-color");
+            var offsetTop = $(this).offset().top;
+            var scrollTop = $(window).scrollTop();
+            var percent = $(this).find(".circle").attr("data-percent");
+            var hasAnimated = $(this).data("animate");
+
+            if (offsetTop < scrollTop + $(window).height() - 30 && !hasAnimated) {
+                $(this).data("animate", true);
+                $(this).find(".circle").circleProgress({
+                    startAngle: -Math.PI / 2,
+                    value: percent / 100,
+                    size: 176,
+                    thickness: 8,
+                    emptyFill: "#EFF1F9",
+                    lineCap: "round",
+                    fill: {
+                        color: pathColor
+                    }
+                }).on("circle-animation-progress", function (event, progress, stepValue) {
+                    $(this).find(".circle-num").text((100 * stepValue).toFixed(0) + "%");
+                }).stop();
+            }
+        });
+    }
+
+    if ($("[data-sec-pos]").length) {
+        $("[data-sec-pos]").imagesLoaded(function () {
+            $("[data-sec-pos]").sectionPosition("data-sec-pos", "data-pos-for");
+        });
+    }
+    
+    // 26. Service Accordion (Image switching)
+    $("#serviceAccordion").on("show.bs.collapse", function (event) {
+        var index = $(event.target).closest(".accordion-item").index();
+        $(".th-accordion_images img").removeClass("active");
+        $(".th-accordion_images img").eq(index).addClass("active");
+    });
+
+    // 27. Accordion Image Tabs
+    $(".accordion-item-wrapp li:first-child").addClass("active");
+    $(".according-img-tab").hide();
+    $(".according-img-tab:first").show();
+
+    $(".accordion-item-wrapp .accordion-item-content").mouseenter(function () {
+        $(".accordion-item-wrapp .accordion-item-content").removeClass("active");
+        $(".according-img-tab").hide();
+        var targetSelector = $(this).find(".accordion-tab-item").attr("data-bs-target");
+        return $(targetSelector).fadeIn(), !1;
+    });
+
+    // 28. Isotope Filtering (Filter and Masonry)
+    $(".filter-active").imagesLoaded(function () {
+        if ($(".filter-active").length > 0) {
+            var isotopeFilter = $(".filter-active").isotope({
+                itemSelector: ".filter-item",
+                filter: "*",
+                masonry: {
+                    columnWidth: 1
+                }
+            });
+            
+            $(".filter-menu-active").on("click", "button", function () {
+                var filterValue = $(this).attr("data-filter");
+                isotopeFilter.isotope({
+                    filter: filterValue
+                });
+            });
+
+            $(".filter-menu-active").on("click", "button", function (event) {
+                event.preventDefault();
+                $(this).addClass("active").siblings(".active").removeClass("active");
+            });
+        }
+    });
+
+    $(".masonary-active").imagesLoaded(function () {
+        if ($(".masonary-active").length > 0) {
+            $(".masonary-active").isotope({
+                itemSelector: ".filter-item",
+                filter: "*",
+                masonry: {
+                    columnWidth: 1
+                }
+            });
+        }
+    });
+
+    // Isotope for masonry and WooCommerce reviews
+    $(".masonary-active, .woocommerce-Reviews .comment-list").imagesLoaded(function () {
+        var selector = ".masonary-active, .woocommerce-Reviews .comment-list";
+        if ($(selector).length > 0) {
+            $(selector).isotope({
+                itemSelector: ".filter-item, .woocommerce-Reviews .comment-list li",
+                filter: "*",
+                masonry: {
+                    columnWidth: 1
+                }
+            });
+            // Re-layout on tab show
+            $('[data-bs-toggle="tab"]').on("shown.bs.tab", function (a) {
+                $(selector).isotope({
+                    filter: "*"
+                });
+            });
+        }
+    });
+
+    // 29. Counter Up
+    $(".counter-number").counterUp({
+        delay: 10,
+        time: 1000
+    });
+
+    // 30. Shape Mockup Plugin
+    $.fn.shapeMockup = function () {
+        $(this).each(function () {
+            var mockup = $(this);
+            var top = mockup.data("top");
+            var right = mockup.data("right");
+            var bottom = mockup.data("bottom");
+            var left = mockup.data("left");
+
+            mockup.css({
+                top: top,
+                right: right,
+                bottom: bottom,
+                left: left
+            })
+            .removeAttr("data-top")
+            .removeAttr("data-right")
+            .removeAttr("data-bottom")
+            .removeAttr("data-left")
+            .parent().addClass("shape-mockup-wrap");
+        });
+    };
+
+    if ($(".shape-mockup")) {
+        $(".shape-mockup").shapeMockup();
+    }
+
+    // 31. CSS Progress Bar Animation
+    $(function () {
+        $(".progress-bar").each(function () {
+            $(this).find(".progress-content").animate({
+                width: $(this).attr("data-percentage")
+            }, 2000);
+            $(this).find(".progress-number-mark").animate({
+                left: $(this).attr("data-percentage")
+            }, {
+                duration: 2000,
+                step: function (now) {
+                    var percent = Math.round(now);
+                    $(this).find(".percent").html(percent + "%");
+                }
+            });
+        });
+    });
+
+    // 32. WooCommerce Price Slider
+    $(".price_slider").slider({
+        range: true,
+        min: 10,
+        max: 100,
+        values: [10, 75],
+        slide: function (event, ui) {
+            $(".from").text("$" + ui.values[0]);
+            $(".to").text("$" + ui.values[1]);
+        }
+    });
+
+    $(".from").text("$" + $(".price_slider").slider("values", 0));
+    $(".to").text("$" + $(".price_slider").slider("values", 1));
+
+    // Call circle progress bar animation on scroll
+    animateCircleProgress();
+    $(window).scroll(animateCircleProgress);
+
+    // 33. On-Scroll Counter/Radial Progress Animation
+    var $window = $(window);
+
+    function animateCountersOnScroll() {
+        $(".countervalue").each(function () {
+            // Check if the element is in view AND has the 'start' class (meaning it hasn't animated yet)
+            if ($(this).hasClass("start")) {
+                var elementTop = $(this).offset().top;
+                var elementBottom = elementTop + $(this).outerHeight();
+                var viewportTop = $window.scrollTop();
+                var viewportBottom = viewportTop + $window.height();
+
+                if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    $(this).removeClass("start");
+                    // Animate the counter value
+                    var targetValue = $(this).text();
+                    
+                    if (targetValue == Math.floor(targetValue)) { // Integer
+                        $(this).animate({ Counter: targetValue }, {
+                            duration: 2800,
+                            easing: "swing",
+                            step: function (now) {
+                                $(this).text(Math.ceil(now) + "%");
+                            }
+                        });
+                    } else { // Decimal (money)
+                        $(this).animate({ Counter: targetValue }, {
+                            duration: 2800,
+                            easing: "swing",
+                            step: function (now) {
+                                $(this).text(now.toFixed(2) + "$");
+                            }
+                        });
+                    }
+                    
+                    // Animate radial progress (SVG stroke-dashoffset)
+                    $(".radial-progress").each(function (index, element) {
+                        $(this).find($("circle.bar--animated")).removeAttr("style");
+                        
+                        var radialTop = $(this).offset().top;
+                        var radialBottom = radialTop + $(this).outerHeight();
+                        
+                        if (radialBottom > viewportTop && radialTop < viewportBottom) {
+                            var counterValue = $(element).data("countervalue");
+                            var radius = $(this).find($("circle.bar--animated")).attr("r");
+                            var circumference = 2 * Math.PI * radius;
+                            var offset = circumference - counterValue * circumference / 100;
+                            
+                            $(this).find($("circle.bar--animated")).animate({ "stroke-dashoffset": offset }, 2800);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    $window.on("scroll", animateCountersOnScroll);
+    $window.on("load", animateCountersOnScroll);
+
+    // 34. WooCommerce Checkout/Cart Functionality
+    $("#ship-to-different-address-checkbox").on("change", function () {
+        if ($(this).is(":checked")) {
+            $("#ship-to-different-address").next(".shipping_address").slideDown();
+        } else {
+            $("#ship-to-different-address").next(".shipping_address").slideUp();
+        }
+    });
+
+    $(".woocommerce-form-login-toggle a").on("click", function (event) {
+        event.preventDefault();
+        $(".woocommerce-form-login").slideToggle();
+    });
+
+    $(".woocommerce-form-coupon-toggle a").on("click", function (event) {
+        event.preventDefault();
+        $(".woocommerce-form-coupon").slideToggle();
+    });
+
+    $(".shipping-calculator-button").on("click", function (event) {
+        event.preventDefault();
+        $(this).next(".shipping-calculator-form").slideToggle();
+    });
+
+    // Payment methods
+    $('.wc_payment_methods input[type="radio"]:checked').siblings(".payment_box").show();
+    $('.wc_payment_methods input[type="radio"]').each(function () {
+        $(this).on("change", function () {
+            $(".payment_box").slideUp();
+            $(this).siblings(".payment_box").slideDown();
+        });
+    });
+
+    // Rating select
+    $(".rating-select .stars a").each(function () {
+        $(this).on("click", function (event) {
+            event.preventDefault();
+            $(this).siblings().removeClass("active");
+            $(this).parent().parent().addClass("selected");
+            $(this).addClass("active");
+        });
+    });
+
+    // Quantity buttons
+    $(".quantity-plus").each(function () {
+        $(this).on("click", function (event) {
+            event.preventDefault();
+            var quantityInput = $(this).siblings(".qty-input");
+            var currentVal = parseInt(quantityInput.val(), 10);
+            if (!isNaN(currentVal)) {
+                quantityInput.val(currentVal + 1);
+            }
+        });
+    });
+
+    $(".quantity-minus").each(function () {
+        $(this).on("click", function (event) {
+            event.preventDefault();
+            var quantityInput = $(this).siblings(".qty-input");
+            var currentVal = parseInt(quantityInput.val(), 10);
+            if (!isNaN(currentVal) && currentVal > 1) {
+                quantityInput.val(currentVal - 1);
+            }
+        });
+    });
+
+    // 36. Pricing Table Switcher (Monthly/Yearly)
+    var monthlyBtn = document.getElementById("filt-monthly");
+    var yearlyBtn = document.getElementById("filt-yearly");
+    var switcherToggle = document.getElementById("switcher");
+    var monthlyContent = document.getElementById("monthly");
+    var yearlyContent = document.getElementById("yearly");
+
+    if ($(".pricing-tabs").length) {
+        monthlyBtn.addEventListener("click", function () {
+            switcherToggle.checked = false;
+            monthlyBtn.classList.add("toggler--is-active");
+            yearlyBtn.classList.remove("toggler--is-active");
+            monthlyContent.classList.remove("hide");
+            yearlyContent.classList.add("hide");
+        });
+
+        yearlyBtn.addEventListener("click", function () {
+            switcherToggle.checked = true;
+            yearlyBtn.classList.add("toggler--is-active");
+            monthlyBtn.classList.remove("toggler--is-active");
+            monthlyContent.classList.add("hide");
+            yearlyContent.classList.remove("hide");
+        });
+
+        switcherToggle.addEventListener("click", function () {
+            yearlyBtn.classList.toggle("toggler--is-active");
+            monthlyBtn.classList.toggle("toggler--is-active");
+            monthlyContent.classList.toggle("hide");
+            yearlyContent.classList.toggle("hide");
+        });
+    }
+
+    // 37. WOW.js Initialization (Scroll Animations)
+    new WOW({
+        boxClass: "wow",
+        animateClass: "animated",
+        offset: 0,
+        mobile: true,
+        live: true
+    }).init();
+
+    // 38. SVG Half-Circle Progress
+    $(".th-progress").each(function () {
+        var percentage = $(this).data("progress-value") / 100;
+        var circle = $(this).find(".half-circle");
+        var text = $(this).find("text");
+        var circumference = 251.2; // Derived from r=40 in SVG: 2 * PI * 40 = 251.327...
+        var offset = circumference - circumference * percentage;
+        
+        circle.css({
+            transition: "stroke-dashoffset 1s ease-in-out",
+            "stroke-dashoffset": offset
+        });
+        
+        $({
+            progressValue: 0
+        }).animate({
+            progressValue: 100 * percentage
+        }, {
+            duration: 1000,
+            step: function (now) {
+                text.text(Math.round(now) + "%");
+            }
+        });
+    });
+
+    // 39. Data Background Image (Simplified)
+    $("[data-background]").each(function () {
+        let bgSrc = $(this).attr("data-background");
+        if (bgSrc) {
+            $(this).css("background-image", `url(${bgSrc})`);
+        }
+    });
+
+    // 40. Project Area Background Hover Effect
+    $(".project-item").on("mouseenter mouseleave", function (event) {
+        let bg = (event.type === "mouseenter") ? $(this).data("bg") : "";
+        $(".project-area2").attr("data-background", bg).css("background-image", bg ? `url(${bg})` : "");
+    });
+
+    // 41. Disable Context Menu and Developer Tools Shortcuts
+    // window.addEventListener("contextmenu", function (e) {
+    //     e.preventDefault();
+    // }, false);
+
+    document.onkeydown = function (e) {
+        // F12 key (123)
+        if (event.keyCode == 123) {
+            return false;
+        }
+        // Ctrl+Shift+I (Invert - Developer Tools)
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+        }
+        // Ctrl+Shift+C (CSS Inspector)
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+            return false;
+        }
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+        }
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+        }
+    };
+
+})(jQuery);

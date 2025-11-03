@@ -1,0 +1,6 @@
+{
+	"scripts": {
+        "compile": "sass assets/sass/style.scss assets/css/style.min.css --style compressed",
+        "watch": "sass --watch assets/sass/style.scss assets/css/style.min.css --style compressed"
+    }
+}

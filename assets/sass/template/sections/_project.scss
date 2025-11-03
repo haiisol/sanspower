@@ -1,0 +1,978 @@
+/* project-box start ---------------------------*/
+.line-bottom {
+    border-top: 1px solid #4D5765;
+    padding-top: 60px;
+}
+
+.project-box-static-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+
+    .project-box-static {
+        position: sticky;
+        top: 155px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin: auto;
+
+        &:nth-child(even) {
+            .project-box-img {
+                order: 1;
+                margin-left: auto;
+            }
+
+            .project-box-details {
+                order: 0;
+            }
+        }
+    }
+}
+
+.project-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+
+    &.style2 {
+        .box-title {
+            color: $title-color;
+        }
+
+        .box-text {
+            color: $body-color;
+        }
+
+        .counter-grid .counter-text {
+            color: $body-color;
+        }
+
+        .border-btn {
+            background-color: transparent;
+            border: 1px solid #E0E0E0;
+            border-radius: 14px;
+
+            .btn-text {
+
+                &:before,
+                &:after {
+                    color: $title-color;
+                }
+            }
+
+            &.th-icon {
+                i {
+                    color: $title-color;
+                }
+            }
+
+            &:hover {
+                .btn-text {
+
+                    &:before,
+                    &:after {
+                        color: $white-color;
+                    }
+                }
+
+                &.th-icon {
+                    i {
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+    }
+
+    @include lg {
+        display: block;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 40px;
+    }
+
+    &:nth-child(even) {
+        .project-box-img {
+            order: 1;
+            margin-left: auto;
+        }
+
+        .project-box-details {
+            order: 0;
+        }
+    }
+
+    &-img {
+        max-width: 880px;
+        height: 470px;
+        position: relative;
+        overflow: hidden;
+
+        @include lg {
+            max-width: 100%;
+            margin-bottom: 35px;
+        }
+
+        @include sm {
+            height: 100%;
+        }
+
+        img {
+            transition: 0.4s;
+            border-radius: 30px;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .project-box-details {
+        max-width: 590px;
+    }
+
+    .project-subtitle {
+        font-weight: 500;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .box-title {
+        font-weight: 600;
+        font-size: 36px;
+        color: $white-color;
+        transition: all 0.4s ease-in-out;
+
+        @include sm {
+            font-size: 24px;
+        }
+    }
+
+    .box-text {
+        color: #B7BEC8;
+        margin-bottom: 30px;
+    }
+
+    .th-btn {
+        background-color: $title-color;
+        border: 1px solid #4D5765;
+        text-transform: uppercase;
+        color: $white-color;
+
+
+        .btn-text {
+
+            &:before,
+            &:after {
+                color: $white-color;
+            }
+        }
+
+        &.th-icon {
+            i {
+                color: $white-color;
+            }
+        }
+
+        &:after {
+            background: $theme-color;
+        }
+
+        &:hover {
+            border: 1px solid $theme-color;
+        }
+    }
+}
+
+/* project-box end ---------------------------*/
+
+/* project item start -------------------------*/
+.project-area2 {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: background-image 0.4s ease-in-out;
+    position: relative;
+    z-index: 1;
+
+    @include md {
+        background-size: cover;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #0D0C00;
+        opacity: 0.4;
+        z-index: -1;
+
+    }
+
+    .shadow-title {
+        font-weight: 500;
+        font-size: 150px;
+        line-height: 94px;
+        letter-spacing: 0.02em;
+        text-transform: capitalize;
+        color: $white-color;
+        opacity: 0.2;
+        backdrop-filter: blur(50px);
+        position: absolute;
+        top: 100px;
+        left: 50px;
+
+        @include md {
+            font-size: 90px;
+            line-height: 80px;
+        }
+
+        @include xs {
+            font-size: 60px;
+            line-height: 70px;
+        }
+
+        @include vxs {
+            font-size: 50px;
+            line-height: 60px;
+        }
+    }
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 750px;
+    border-right: 1px solid $white-color;
+
+    @include md {
+        height: 600px;
+    }
+
+    .box-content {
+        padding: 35px;
+        position: absolute;
+        width: 100%;
+        bottom: -10%;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.24);
+        backdrop-filter: blur(37px);
+        transition: all 0.4s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+
+        @include ml {
+            padding: 25px;
+        }
+    }
+
+    .box-title {
+        color: $white-color;
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 0px;
+
+        @include xxl {
+            font-size: 24px;
+        }
+    }
+
+    .box-subtitle {
+        font-family: $title-font;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.02em;
+        color: #FFFA84;
+        margin-bottom: 5px;
+    }
+
+    &:hover {
+        .box-content {
+            bottom: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.portfolio-area {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* project item end -------------------------*/
+
+/* project item start -------------------------*/
+.project-item2 {
+    position: relative;
+    border-radius: 30px;
+    --space: 40px;
+    overflow: hidden;
+    z-index: 9;
+
+    @include md {
+        --space: 20px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(13, 12, 0, 0.46);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        border-radius: inherit;
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease-in-out;
+
+    }
+
+    .box-img {
+        img {
+            width: 100%;
+        }
+
+        @include md {
+            margin-bottom: 0;
+        }
+    }
+
+    .box-title {
+        color: $white-color;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 40px;
+        letter-spacing: 0.02em;
+        margin-bottom: 0px;
+
+        @include ml {
+            font-size: 24px;
+            line-height: 34px;
+        }
+    }
+
+    .box-subtitle {
+        color: #FFFA84;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 18px;
+        margin-bottom: 20px;
+    }
+
+    .box-content {
+        position: absolute;
+        left: var(--space);
+        bottom: -40px;
+        opacity: 0;
+        visibility: hidden;
+        display: inline-block;
+        transition: all 0.3s ease-in-out;
+        z-index: 2;
+    }
+
+    .icon-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 18px;
+        width: 56px;
+        height: 56px;
+        border: 1px solid $white-color;
+        border-radius: 50%;
+        color: $white-color;
+        position: absolute;
+        right: 30px;
+        top: -30px;
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: $white-color;
+            color: $title-color;
+        }
+
+    }
+
+    &:hover {
+        &:before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .box-content {
+            opacity: 1;
+            bottom: var(--space);
+            visibility: visible;
+        }
+
+        .icon-btn {
+            top: var(--space);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+/* project card start ----------------------------*/
+.project-area {
+    .project-image {
+        position: relative;
+        z-index: 2;
+        height: 548px;
+
+        @include sm {
+            height: 400px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%, 0 40%);
+
+        }
+
+        .discount-wrapp {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 210px;
+            height: 210px;
+            background-color: $white-color;
+
+            .discount-tag {
+                background-color: $theme-color;
+                min-width: 180px;
+                min-height: 180px;
+                max-width: 180px;
+                max-height: 180px;
+                display: block;
+                margin: 15px auto;
+
+                span {
+                    --rotate-letter: 18deg;
+                    min-height: 85px;
+                    min-width: 85px;
+                }
+            }
+
+            .project-counter {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 118px;
+                height: 118px;
+                border-radius: 50%;
+                margin-bottom: 0;
+                border: 1px solid $title-color;
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.project-card {
+    display: flex;
+    gap: 20px;
+
+    &_wrapp {
+        display: flex;
+        gap: 40px;
+    }
+
+    .box-icon {
+        position: absolute;
+        min-width: 70px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 50%;
+        background: $theme-color;
+
+    }
+
+    @include md {
+        padding: 30px;
+    }
+
+    .box-title {
+        font-size: 36px;
+
+        @include lg {
+            font-size: 24px;
+        }
+    }
+
+    .box-text {
+        margin-bottom: -0.3rem;
+    }
+}
+
+
+.sec-text5 {
+    color: #7A8392;
+}
+
+/* project start --------------------*/
+.filter-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+    text-align: center;
+    margin-bottom: 60px;
+
+    @include lg {
+        margin-bottom: 50px;
+    }
+
+    @include md {
+        margin-top: -10px;
+        margin-bottom: 45px;
+        gap: 6px;
+    }
+
+    .tab-btn {
+        position: relative;
+        background: transparent;
+        border: none;
+        border-left: 1px solid transparent;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 300;
+        color: $body-color;
+        transition: all 0.4s ease-in-out;
+
+        &:not(:last-child) {
+            &:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 1px;
+                right: -35%;
+                top: 50%;
+                background-color: #D8DDE1;
+                transform: rotate(105deg);
+            }
+        }
+
+        &:hover,
+        &.active {
+            color: $title-color;
+            background: linear-gradient(90deg, #F8F8F8 0%, rgba(248, 248, 248, 0) 100%);
+            border: none;
+            border-left: 1px solid #121212;
+            border-radius: 10px;
+
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.portfolio-box {
+    position: relative;
+    border-radius: 30px;
+    --space: 30px;
+    overflow: hidden;
+    z-index: 9;
+
+    @include md {
+        --space: 20px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #0A0A0A;
+        border-radius: inherit;
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease-in-out;
+
+    }
+
+    .box-img {
+        img {
+            width: 100%;
+        }
+
+        @include md {
+            margin-bottom: 0;
+        }
+    }
+
+    .box-title {
+        color: $white-color;
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+
+    .box-subtitle {
+        color: $white-color;
+        font-size: 14px;
+        margin-bottom: -0.3rem;
+    }
+
+    .box-content {
+        position: absolute;
+        left: var(--space);
+        bottom: -40px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        z-index: 2;
+    }
+
+    .icon-btn {
+        background-color: $white-color;
+        border: none;
+        font-size: 18px;
+        position: absolute;
+        right: var(--space);
+        top: -30px;
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+        }
+
+    }
+
+    &:hover {
+        &:before {
+            opacity: 0.6;
+            visibility: visible;
+        }
+
+        .box-content {
+            opacity: 1;
+            bottom: var(--space);
+            visibility: visible;
+        }
+
+        .icon-btn {
+            top: var(--space);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+/* project details -------------------------*/
+.widget_info {
+    margin-top: -134px;
+    padding: 0;
+    margin-right: 30px;
+    border-radius: 30px;
+    background-color: $white-color;
+    box-shadow: 6px 6px 100px 6px rgba(177, 177, 177, 0.18);
+
+    @include lg {
+        margin-right: 0;
+    }
+
+    @include md {
+        margin-top: 0;
+    }
+
+    .widget_title {
+        background-color: $theme-color;
+        color: $white-color;
+        padding: 30px 40px;
+        border-radius: 30px 30px 0px 0px;
+        margin-bottom: 10px;
+
+    }
+
+}
+
+.project-info {
+    &-wrap {
+        position: absolute;
+        right: 80px;
+        top: 80px;
+        background-color: $white-color;
+        box-shadow: 6px 6px 100px 6px rgba(177, 177, 177, 0.18);
+        border-radius: 30px;
+        padding: 40px;
+
+        @media(max-width: 1399px) {
+            right: 40px;
+            top: 40px;
+            padding: 30px;
+        }
+
+        @include md {
+            position: relative;
+            right: unset;
+            left: 0;
+            top: 0;
+            margin-top: 30px;
+            padding: 10px 30px 30px 0;
+        }
+    }
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 40px 0px 40px;
+
+    @include lg {
+        padding: 30px 30px 0 30px;
+    }
+
+    &:last-child {
+        padding-bottom: 40px;
+        margin-bottom: -0.3rem;
+
+        @include lg {
+            padding-bottom: 30px;
+        }
+    }
+
+
+    @include xl {
+        gap: 15px;
+    }
+
+    &_icon {
+        i {
+            @include equal-size-lineHeight(56px);
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            color: $theme-color;
+            font-size: 20px;
+            text-align: center;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                background-color: $theme-color;
+                color: $white-color;
+                border-color: $theme-color;
+            }
+        }
+    }
+
+    &_subtitle {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    &_title {
+        font-family: $body-font;
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 0;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+
+.project-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #EDEDED;
+    border-bottom: 1px solid #EDEDED;
+    padding: 17px 0;
+    margin-top: 22px;
+
+    .icon-btn {
+        --btn-size: 55px;
+        font-size: 16px;
+        border-radius: 99px;
+        border: none;
+        background-color: transparent;
+        border: 1px solid #EDEDED;
+        color: $title-color;
+
+        @include vxs {
+            --btn-size: 45px;
+        }
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+        }
+    }
+
+    .nav-btn {
+        color: $body-color;
+        font-family: $title-font;
+        font-weight: 500;
+
+        @include vxs {
+            font-size: 14px;
+        }
+
+        &:first-child {
+            .icon-btn {
+                margin-right: 10px;
+            }
+        }
+
+        &:last-child {
+            .icon-btn {
+                margin-left: 10px;
+            }
+        }
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+}
+
+/* project card start ----------------------------*/
+.project-area4 {
+    position: relative;
+    background-color: $smoke-color2;
+    max-width: 1760px;
+    display: block;
+    margin: auto;
+    border-radius: 50px 50px 0 0;
+}
+
+.project-grid {
+    position: relative;
+    --space: 40px;
+    overflow: hidden;
+    z-index: 3;
+
+    .project-img {
+        position: relative;
+        border-radius: 30px;
+        overflow: hidden;
+        z-index: 2;
+
+        &:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 30px;
+        }
+    }
+
+    .box-title {
+        color: $white-color;
+        width: 200px;
+        border-bottom: 1px solid $white-color;
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+
+        a {
+            color: inherit;
+        }
+    }
+
+    .box-subtitle {
+        color: $white-color;
+        font-size: 14px;
+        margin-bottom: -0.3rem;
+    }
+
+    .project-content {
+        position: absolute;
+        left: var(--space);
+        bottom: -40px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        z-index: 3;
+    }
+
+    .project-icon {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .icon-btn {
+        border: 1px solid $white-color;
+        color: $white-color;
+
+        &:hover {
+            background-color: $white-color;
+            color: $title-color;
+        }
+    }
+
+    &:hover {
+        .project-img {
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .project-content {
+            opacity: 1;
+            bottom: var(--space);
+            visibility: visible;
+        }
+    }
+}
+
+/* projectSlider4 start ----------------*/
+.projectSlider4 {
+    margin: 0 -16% !important;
+
+    @include sm {
+        margin: 0 !important;
+    }
+
+    .swiper-slide {
+        margin-bottom: 60px !important;
+        transition: all 0.5s ease-out;
+
+        @include sm {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .swiper-slide.swiper-slide-active {
+        margin-top: 60px !important;
+        margin-bottom: 0px !important;
+
+        @include sm {
+            margin-top: 0 !important;
+        }
+    }
+}

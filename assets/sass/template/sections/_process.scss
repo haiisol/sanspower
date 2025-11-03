@@ -1,0 +1,575 @@
+/* Processs area ------------------------*/
+
+.process-card {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+
+    &:nth-child(even) {
+        .process-image {
+            order: 1;
+
+            @include lg {
+                margin-top: 40px;
+            } 
+            @include xs {
+                order: 0;
+            }
+
+            .box-img {
+                border-radius: 0px 0px 200px 200px;
+                order: 0;
+
+                img {
+                    border-radius: 0px 0px 200px 200px;
+                }
+            }
+
+            .number {
+                order: -1;
+                margin: auto auto -40px auto;
+                @include xs {
+                    margin: -40px auto auto auto;
+                }
+            }
+        }
+
+        .box-content {
+            order: 0;
+            @include xs {
+                order: 1;
+            }
+        }
+    }
+
+    &_wrapp {
+        display: flex;
+        gap: 30px;
+
+        @include lg {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include xs {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .process-image {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+
+        @include lg {
+            display: block;
+        }
+    }
+
+    .box-img {
+        border-radius: 200px 200px 0px 0px;
+
+        img {
+            width: 100%;
+            border-radius: 200px 200px 0px 0px;
+        }
+    }
+
+    .number {
+        position: relative;
+        width: 76px;
+        height: 76px;
+        line-height: 56px;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 0.02em;
+        text-transform: capitalize;
+        color: $white-color;
+        background-color: $theme-color;
+        border: 10px solid $white-color;
+        margin: -40px auto auto auto;
+        display: block;
+        z-index: 2;
+    }
+
+    .box-title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 34px;
+        letter-spacing: 0.02em;
+        text-transform: capitalize;
+        max-width: 265px;  
+        display: block;
+        margin: 8px auto auto auto;
+    }
+
+    .box-text {
+        margin-bottom: 0;
+    }
+}
+
+/* process area end ---------------------------*/
+/* process area start ---------------------------*/
+.process-box {
+
+    &-wrap {
+        position: relative;
+
+        &:after {
+            content: '';
+            background-image: url("data:image/svg+xml,%3Csvg width='157' height='143' viewBox='0 0 157 143' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.18553 72.6645C40.2411 43.5949 109.318 31.8417 141.38 74.2832C142.248 75.4349 139.754 80.2559 139.609 80.0564C107.749 37.8908 38.6509 49.8053 1.9834 78.5785C2.08939 78.4951 1.88402 73.6916 3.18553 72.6645Z' fill='%23B7BEC8'/%3E%3Cpath d='M137.123 54.3586C140.778 62.6287 145.475 70.3722 149.13 78.6422C149.634 79.7721 146.278 83.5314 145.093 83.2807C133.221 80.8515 121.357 78.5853 109.238 77.7625C108.528 77.7143 111.479 72.9545 113.049 73.0655C125.162 73.8992 137.021 76.1482 148.903 78.5838C147.559 80.1356 146.204 81.6813 144.866 83.2223C141.211 74.9523 136.514 67.2088 132.859 58.9387C132.178 57.3886 136.955 53.9727 137.123 54.3586Z' fill='%23B7BEC8'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            width: 150px;
+            height: 89px;
+            position: absolute;
+            top: 0px;
+            right: -70px;
+
+            @include ml {
+                display: none;
+            }
+        }
+
+        &:nth-child(even) {
+
+            &:after {
+                top: 30%;
+                transform: rotateX(180deg);
+            }
+        }
+
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    text-align: center;
+
+    .box-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        display: block;
+        margin: auto auto 30px auto;
+
+        img {
+            border-radius: 100px;
+        }
+    }
+
+    .box-content {
+        max-width: 300px;
+        display: block;
+        margin: auto;
+    }
+
+    &_icon {
+        @include equal-size-lineHeight(130px);
+        background-color: $white-color;
+        border-radius: 50%;
+        text-align: center;
+        box-shadow: 0px 0px 77px 10px rgba(170, 170, 170, 0.13);
+        margin: 0 auto 25px auto;
+        transition: 0.4s ease-in-out;
+
+        img {
+            transition: 0.4s ease-in-out;
+        }
+    }
+
+    .box-title {
+        margin-bottom: 8px;
+    }
+
+    .box-text {
+        margin: 0 auto -0.5em auto;
+    }
+
+    &:hover {
+        .process-box {
+            &_icon {
+                background-color: $theme-color;
+
+                img {
+                    filter: brightness(0) invert(1);
+                    transform: rotateY(180deg);
+                }
+            }
+        }
+    }
+}
+
+@include md {
+    .process-box {
+        &-wrap {
+            &:nth-child(even) {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include sm {
+    .process-box {
+        &-wrap {
+            &:after {
+                display: none;
+            }
+
+            margin-bottom: 40px;
+
+            &:nth-child(even) {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.process4-image {
+    border-radius: 30px;
+    margin-right: 40px;
+
+    @include lg {
+        margin-right: 0;
+        height: 375px;
+        margin-bottom: 30px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    img {
+        border-radius: 30px;
+    }
+}
+
+.box-desc {
+    position: relative;
+    font-family: $title-font;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    color: $body-color;
+    max-width: 629px;
+    margin-bottom: 45px;
+
+    @include lg {
+        padding-left: 55px;
+    }
+
+    @include md {
+        padding-left: 0;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: -190%;
+        width: 1px;
+        height: 180%;
+        background-color: $smoke-color;
+        z-index: -1;
+
+        @include lg {
+            display: none;
+        }
+    }
+}
+
+/* process area start ---------------------------*/
+
+/* process grid area start -------------------------*/
+.process-grid {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    border-radius: 30px;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        mask-image: url("../img/shape/process-shape.png");
+        background-color: #F5F8F3;
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        border-radius: 30px;
+        z-index: -1;
+
+        @include md {
+            mask-image: none;
+        }
+    }
+
+    .box-icon {
+        background-color: $theme-color;
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        width: 137px;
+        height: 115px;
+        padding: 20px;
+        position: absolute;
+        left: -4px;
+        top: -30px;
+
+        img {
+            transition: all 0.4s ease-in-out;
+        }
+
+        @include xl {
+            width: 118px;
+            padding: 15px;
+            left: -3px;
+        }
+
+        @include lg {
+            width: 130px;
+            left: 0;
+        }
+    }
+
+    .box-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+        margin-left: 120px;
+
+        @include xl {
+            margin-left: 90px;
+            font-size: 20px;
+        }
+
+        @include lg {
+            margin-left: 110px;
+        }
+
+        @include md {
+            margin-left: 80px;
+        }
+
+        span {
+            display: block;
+        }
+    }
+
+    .box-wrapp {
+        display: flex;
+        justify-content: space-between;
+
+        @include vxs {
+            display: block;
+        }
+    }
+
+    .box-number {
+        font-family: $title-font;
+        font-weight: 300;
+        font-size: 36px;
+        line-height: 46px;
+        text-transform: capitalize;
+        color: #7E9E7E;
+        opacity: 0.3;
+
+    }
+
+    .box-text {
+        margin-bottom: -0.4rem;
+    }
+
+    &:hover {
+        .box-icon {
+            img {
+                transform: scale(-1) rotate(180deg);
+            }
+        }
+    }
+}
+
+/* process grid area end -------------------------*/
+
+/* process area start ---------------------------*/
+.process-area2 {
+    position: relative;
+    max-width: 1620px;
+    display: block;
+    margin: auto;
+}
+
+
+.process-card2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+
+    @include lg {
+        padding: 0;
+    }
+
+    &-wrap {
+        &:nth-child(even) {
+            margin-top: -40px;
+
+            @include sm {
+                margin-top: 40px;
+            }
+        }
+
+        &:nth-child(2) {
+            .box-number {
+                background: #F3BA0E;
+                top: 40px;
+                left: 10px;
+
+                &:after,
+                &:before {
+                    background-color: #F3BA0E;
+                }
+            }
+
+            .box-icon {
+                &:before {
+                    top: 50%;
+                    left: -73%;
+                    background-color: #F3BA0E;
+                }
+            }
+        }
+
+        &:nth-child(3) {
+            .box-number {
+                background: #70D715;
+                top: 47px;
+                left: 20px;
+
+                &:after,
+                &:before {
+                    background-color: #70D715;
+                }
+            }
+
+            .box-icon {
+                &:before {
+                    top: 60%;
+                    left: -70%;
+                    background-color: #70D715;
+                }
+            }
+        }
+
+    }
+
+    .box-number {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        color: $white-color;
+        border-radius: 50%;
+        background: $theme-color;
+
+        &:after,
+        &:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: $theme-color;
+            opacity: 0.3;
+            @extend .ripple-animation;
+            z-index: -2;
+            border-radius: 50%;
+            transition: all ease 0.4s;
+        }
+
+        &:after {
+            animation-delay: 2s;
+        }
+
+    }
+
+    .box-icon {
+        position: relative;
+        width: 124px;
+        height: 124px;
+        line-height: 124px;
+        border-radius: 50%;
+        display: block;
+        margin: auto auto 30px auto;
+        background-color: $white-color;
+        box-shadow: 0px 10px 50px 10px #E8E8E8;
+
+        img {
+            transition: all 0.4s ease-in-out;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: -80%;
+            width: 89px;
+            height: 35.12px;
+            background-color: $theme-color;
+            mask-image: url('../img/icon/line-shape2.svg');
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+        }
+
+    }
+
+    .box-title {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .box-text {
+        margin-bottom: -0.3rem;
+    }
+
+    &:hover {
+        .box-icon {
+            img {
+                transform: scale(-1) rotate(180deg);
+            }
+        }
+    }
+}
+
+.process-btn {
+    text-align: center;
+    border: 1px solid $smoke-color;
+    border-radius: 30px;
+    padding: 5px 40px;
+    margin: auto;
+
+    @include vxs {
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+}
+
+// .process-sec {
+//     margin-top: 65px;
+// }
