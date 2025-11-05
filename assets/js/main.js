@@ -544,46 +544,6 @@
         });
     }
 
-    // 21. Slider Drag Cursor (GSAP)
-    const dragCursor = document.querySelector(".slider-drag-cursor");
-    const cursorPosition = {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2
-    };
-    const targetPosition = {
-        x: cursorPosition.x,
-        y: cursorPosition.y
-    };
-    const setCursorX = gsap.quickSetter(dragCursor, "x", "px");
-    const setCursorY = gsap.quickSetter(dragCursor, "y", "px");
-
-    window.addEventListener("pointermove", function (event) {
-        targetPosition.x = event.x;
-        targetPosition.y = event.y;
-    });
-
-    gsap.set(".slider-drag-cursor", {
-        xPercent: -50,
-        yPercent: -50
-    });
-
-    gsap.ticker.add(function () {
-        const easing = 1 - Math.pow(0, gsap.ticker.deltaRatio());
-        cursorPosition.x += (targetPosition.x - cursorPosition.x) * easing;
-        cursorPosition.y += (targetPosition.y - cursorPosition.y) * easing;
-        setCursorX(cursorPosition.x);
-        setCursorY(cursorPosition.y);
-    });
-
-    $(".slider-drag-wrap").on("mouseenter mouseleave", function (event) {
-        $(".slider-drag-cursor").toggleClass("active", event.type === "mouseenter");
-    });
-
-    $(".slider-drag-wrap a").on("mouseenter mouseleave", function (event) {
-        // Toggle active if it's NOT mouseenter (i.e., on mouseleave, for the link)
-        $(".slider-drag-cursor").toggleClass("active", event.type !== "mouseenter");
-    });
-
     // 22. Progress Bar Counter (choose-progress-bar)
     $(document).on("DOMContentLoaded", function () {
         $(".choose-progress-bar .progress-fill .counter").each(function () {

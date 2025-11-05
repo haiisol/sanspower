@@ -36,7 +36,7 @@
 	height: 25px;
 	position: relative;
 	border-radius: 40% 40% 40% 40% / 40% 40% 40% 40%;
-	color: #57B33E;
+	color: $theme-color;
 	animation: loaderfill 1s ease-in infinite alternate;
   
 	&::before,
