@@ -24,11 +24,6 @@
         $(".preloader").fadeOut();
     });
 
-    // 2. Nice Select (Custom dropdown/select styling)
-    if ($(".nice-select").length) {
-        $(".nice-select").niceSelect();
-    }
-
     // 3. Mobile Menu Plugin (thmobilemenu)
     $.fn.thmobilemenu = function (options) {
         var settings = $.extend({
@@ -412,44 +407,6 @@
         validateAndSubmitForm();
     });
 
-    // 11. Custom Smooth Scroll (Lenis/GSAP)
-    let lenisInstance;
-
-    function initLenis() {
-        // Only initialize on desktop (window width > 991px)
-        if (window.innerWidth > 991) {
-            if (!lenisInstance) {
-                lenisInstance = new Lenis({
-                    lerp: .1
-                });
-                lenisInstance.on("scroll", ScrollTrigger.update);
-                gsap.ticker.add(function (time) {
-                    if (lenisInstance) lenisInstance.raf(time * 1000);
-                });
-                
-                // Prevent Lenis from hijacking scroll on specific elements
-                document.querySelectorAll(".allow-natural-scroll").forEach(function (el) {
-                    el.addEventListener("wheel", function (e) {
-                        e.stopPropagation();
-                    });
-                    el.addEventListener("touchmove", function (e) {
-                        e.stopPropagation();
-                    });
-                });
-            }
-            if (lenisInstance) lenisInstance.start();
-        } else {
-            if (lenisInstance) {
-                lenisInstance.stop();
-                lenisInstance = null;
-            }
-        }
-    }
-    
-    // Initialize on load and resize
-    initLenis();
-    window.addEventListener("resize", initLenis);
-
     // 14. Magnific Popup (Lightbox)
     $(".popup-image").magnificPopup({
         type: "image",
@@ -551,25 +508,7 @@
         });
     }
 
-    // 19. GSAP Parallax (th-parallax)
-    gsap.utils.toArray(".th-parallax").forEach(function (element) {
-        const image = element.querySelector("img");
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: element,
-                scrub: true,
-                pin: false
-            }
-        }).fromTo(image, {
-            yPercent: -15,
-            scale: 1.2,
-            ease: "none"
-        }, {
-            yPercent: 15,
-            scale: 1.2,
-            ease: "none"
-        });
-    });
+    
 
     // 20. Cursor Follower (slider-area)
     if ($(".cursor-follower").length > 0) {
@@ -617,20 +556,6 @@
     };
     const setCursorX = gsap.quickSetter(dragCursor, "x", "px");
     const setCursorY = gsap.quickSetter(dragCursor, "y", "px");
-
-    // Function to split text into spans
-    function splitText(element, delimiter, classNamePrefix, suffix) {
-        var text = element.text();
-        var parts = text.split(delimiter);
-        var output = "";
-        
-        if (parts.length) {
-            $(parts).each(function (index, part) {
-                output += '<span class="' + classNamePrefix + (index + 1) + '">' + part + "</span>" + suffix;
-            });
-            element.empty().append(output);
-        }
-    }
 
     window.addEventListener("pointermove", function (event) {
         targetPosition.x = event.x;
@@ -683,65 +608,6 @@
             $("#progress-counter").html(average);
         }
     });
-
-    // 23. Lettering.js Custom Implementation (discount-anime)
-    var LetteringMethods = {
-        init: function () {
-            return this.each(function () {
-                splitText($(this), "", "char", ""); // Split by character
-            });
-        },
-        words: function () {
-            return this.each(function () {
-                splitText($(this), " ", "word", " "); // Split by word
-            });
-        },
-        lines: function () {
-            return this.each(function () {
-                var lineBreaker = "eefec303079ad17405c889e092e105b0"; // Unique string to replace <br>
-                splitText($(this).children("br").replaceWith(lineBreaker).end(), lineBreaker, "line", ""); // Split by line
-            });
-        }
-    };
-
-    function toInt(value) {
-        return parseInt(value, 10);
-    }
-
-    $.fn.lettering = function (method) {
-        if (method && LetteringMethods[method]) {
-            return LetteringMethods[method].apply(this, [].slice.call(arguments, 1));
-        } else if (method === "letters" || !method) {
-            return LetteringMethods.init.apply(this, [].slice.call(arguments, 0));
-        } else {
-            $.error("Method " + method + " does not exist on jQuery.lettering");
-            return this;
-        }
-    };
-
-    $(".discount-anime").lettering();
-
-    // 24. Section Position Adjustment (data-sec-pos)
-    $.fn.sectionPosition = function (posAttribute, forAttribute) {
-        $(this).each(function () {
-            var $this = $(this);
-            var halfHeight = Math.floor($this.height() / 2);
-            var positionType = $this.attr(posAttribute);
-            var forSelector = $this.attr(forAttribute);
-            var $forElement = $(forSelector);
-
-            var paddingTop = toInt($forElement.css("padding-top"));
-            var paddingBottom = toInt($forElement.css("padding-bottom"));
-
-            if (positionType === "top-half") {
-                $forElement.css("padding-bottom", paddingBottom + halfHeight + "px");
-                $this.css("margin-top", "-" + halfHeight + "px");
-            } else if (positionType === "bottom-half") {
-                $forElement.css("padding-top", paddingTop + halfHeight + "px");
-                $this.css("margin-bottom", "-" + halfHeight + "px");
-            }
-        });
-    };
 
     // 25. Circle Progress Bars (Feature and Skill)
     function animateCircleProgress() {
@@ -798,88 +664,6 @@
         });
     }
 
-    if ($("[data-sec-pos]").length) {
-        $("[data-sec-pos]").imagesLoaded(function () {
-            $("[data-sec-pos]").sectionPosition("data-sec-pos", "data-pos-for");
-        });
-    }
-    
-    // 26. Service Accordion (Image switching)
-    $("#serviceAccordion").on("show.bs.collapse", function (event) {
-        var index = $(event.target).closest(".accordion-item").index();
-        $(".th-accordion_images img").removeClass("active");
-        $(".th-accordion_images img").eq(index).addClass("active");
-    });
-
-    // 27. Accordion Image Tabs
-    $(".accordion-item-wrapp li:first-child").addClass("active");
-    $(".according-img-tab").hide();
-    $(".according-img-tab:first").show();
-
-    $(".accordion-item-wrapp .accordion-item-content").mouseenter(function () {
-        $(".accordion-item-wrapp .accordion-item-content").removeClass("active");
-        $(".according-img-tab").hide();
-        var targetSelector = $(this).find(".accordion-tab-item").attr("data-bs-target");
-        return $(targetSelector).fadeIn(), !1;
-    });
-
-    // 28. Isotope Filtering (Filter and Masonry)
-    $(".filter-active").imagesLoaded(function () {
-        if ($(".filter-active").length > 0) {
-            var isotopeFilter = $(".filter-active").isotope({
-                itemSelector: ".filter-item",
-                filter: "*",
-                masonry: {
-                    columnWidth: 1
-                }
-            });
-            
-            $(".filter-menu-active").on("click", "button", function () {
-                var filterValue = $(this).attr("data-filter");
-                isotopeFilter.isotope({
-                    filter: filterValue
-                });
-            });
-
-            $(".filter-menu-active").on("click", "button", function (event) {
-                event.preventDefault();
-                $(this).addClass("active").siblings(".active").removeClass("active");
-            });
-        }
-    });
-
-    $(".masonary-active").imagesLoaded(function () {
-        if ($(".masonary-active").length > 0) {
-            $(".masonary-active").isotope({
-                itemSelector: ".filter-item",
-                filter: "*",
-                masonry: {
-                    columnWidth: 1
-                }
-            });
-        }
-    });
-
-    // Isotope for masonry and WooCommerce reviews
-    $(".masonary-active, .woocommerce-Reviews .comment-list").imagesLoaded(function () {
-        var selector = ".masonary-active, .woocommerce-Reviews .comment-list";
-        if ($(selector).length > 0) {
-            $(selector).isotope({
-                itemSelector: ".filter-item, .woocommerce-Reviews .comment-list li",
-                filter: "*",
-                masonry: {
-                    columnWidth: 1
-                }
-            });
-            // Re-layout on tab show
-            $('[data-bs-toggle="tab"]').on("shown.bs.tab", function (a) {
-                $(selector).isotope({
-                    filter: "*"
-                });
-            });
-        }
-    });
-
     // 29. Counter Up
     $(".counter-number").counterUp({
         delay: 10,
@@ -930,21 +714,6 @@
             });
         });
     });
-
-    // 32. WooCommerce Price Slider
-    $(".price_slider").slider({
-        range: true,
-        min: 10,
-        max: 100,
-        values: [10, 75],
-        slide: function (event, ui) {
-            $(".from").text("$" + ui.values[0]);
-            $(".to").text("$" + ui.values[1]);
-        }
-    });
-
-    $(".from").text("$" + $(".price_slider").slider("values", 0));
-    $(".to").text("$" + $(".price_slider").slider("values", 1));
 
     // Call circle progress bar animation on scroll
     animateCircleProgress();
@@ -1009,72 +778,6 @@
     $window.on("scroll", animateCountersOnScroll);
     $window.on("load", animateCountersOnScroll);
 
-    // 34. WooCommerce Checkout/Cart Functionality
-    $("#ship-to-different-address-checkbox").on("change", function () {
-        if ($(this).is(":checked")) {
-            $("#ship-to-different-address").next(".shipping_address").slideDown();
-        } else {
-            $("#ship-to-different-address").next(".shipping_address").slideUp();
-        }
-    });
-
-    $(".woocommerce-form-login-toggle a").on("click", function (event) {
-        event.preventDefault();
-        $(".woocommerce-form-login").slideToggle();
-    });
-
-    $(".woocommerce-form-coupon-toggle a").on("click", function (event) {
-        event.preventDefault();
-        $(".woocommerce-form-coupon").slideToggle();
-    });
-
-    $(".shipping-calculator-button").on("click", function (event) {
-        event.preventDefault();
-        $(this).next(".shipping-calculator-form").slideToggle();
-    });
-
-    // Payment methods
-    $('.wc_payment_methods input[type="radio"]:checked').siblings(".payment_box").show();
-    $('.wc_payment_methods input[type="radio"]').each(function () {
-        $(this).on("change", function () {
-            $(".payment_box").slideUp();
-            $(this).siblings(".payment_box").slideDown();
-        });
-    });
-
-    // Rating select
-    $(".rating-select .stars a").each(function () {
-        $(this).on("click", function (event) {
-            event.preventDefault();
-            $(this).siblings().removeClass("active");
-            $(this).parent().parent().addClass("selected");
-            $(this).addClass("active");
-        });
-    });
-
-    // Quantity buttons
-    $(".quantity-plus").each(function () {
-        $(this).on("click", function (event) {
-            event.preventDefault();
-            var quantityInput = $(this).siblings(".qty-input");
-            var currentVal = parseInt(quantityInput.val(), 10);
-            if (!isNaN(currentVal)) {
-                quantityInput.val(currentVal + 1);
-            }
-        });
-    });
-
-    $(".quantity-minus").each(function () {
-        $(this).on("click", function (event) {
-            event.preventDefault();
-            var quantityInput = $(this).siblings(".qty-input");
-            var currentVal = parseInt(quantityInput.val(), 10);
-            if (!isNaN(currentVal) && currentVal > 1) {
-                quantityInput.val(currentVal - 1);
-            }
-        });
-    });
-
     // 36. Pricing Table Switcher (Monthly/Yearly)
     var monthlyBtn = document.getElementById("filt-monthly");
     var yearlyBtn = document.getElementById("filt-yearly");
@@ -1106,15 +809,6 @@
             yearlyContent.classList.toggle("hide");
         });
     }
-
-    // 37. WOW.js Initialization (Scroll Animations)
-    new WOW({
-        boxClass: "wow",
-        animateClass: "animated",
-        offset: 0,
-        mobile: true,
-        live: true
-    }).init();
 
     // 38. SVG Half-Circle Progress
     $(".th-progress").each(function () {
