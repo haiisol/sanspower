@@ -48,6 +48,11 @@
         position: absolute;
         top: -30px;
         right: -30px;
+        img {
+            width: 143px;
+            height: 110px;
+            object-fit: cover;
+        }
     }
 
     .box-content {

@@ -61,7 +61,7 @@
 
 .copyright-wrap {
     background-color: #242E37;
-    padding: 25px 0;
+    padding: 10px 0;
 }
 
 .copyright-text {
@@ -185,7 +185,7 @@
     }
 
     .copyright-wrap {
-        background-color: #57B33E;
+        background-color: $theme-color;
         text-align: center;
 
         .copyright-text a {
